@@ -24,17 +24,6 @@ public class Popi {
     private static void popiBye() {
         System.out.println("Bye. Hope to see you again soon!" + newline);
     }
-    private void addToList(String item) {
-        this.list.add(item);
-        System.out.println("added: " + item + newline);
-    }
-
-    private void displayList() {
-        for (int i = 0; i < this.list.size(); i++) {
-            System.out.println((i + 1) + ". " + this.list.get(i));
-        }
-        System.out.println(newline);
-    }
 
     private void readInput() {
        Scanner scanner = new Scanner(System.in);
@@ -42,12 +31,10 @@ public class Popi {
            String input = scanner.nextLine();
            System.out.println(newline);
 
-           if (input.equals("list")) {
-               displayList();
-           } else if (input.equals("bye")) {
+           if (input.equals("bye")) {
                start = false;
            } else {
-               addToList(input);
+               System.out.println(input + newline);
            }
        }
        scanner.close();
