@@ -5,11 +5,9 @@ import java.util.Scanner;
 public class Popi {
 
     static String newline = "\n------------------------------------------";
-    private List<String> list;
     private boolean start;
     public Popi() {
         this.start = true;
-        this.list = new ArrayList<>();
     }
 
     private boolean getStarted() {
