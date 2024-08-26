@@ -33,16 +33,23 @@ public class Popi {
         System.out.println(newline);
     }
 
+    private void addTask(Task task) {
+        this.list.add(task);
+        System.out.println("Got it. I've added this task:");
+        System.out.println("  " + task);
+        System.out.println("Now you have " + this.list.size() + " tasks in the list.");
+        System.out.println(newline);
+    }
+
     private void readInput() {
        Scanner scanner = new Scanner(System.in);
        while (start) {
            String input = scanner.nextLine();
            System.out.println(newline);
 
-           String[] parts = input.split(" ");
+           String[] parts = input.split(" ", 2);
            String command = parts[0].toLowerCase();
-           String taskNumber = parts.length > 1 ? parts[1] : "";
-
+           String task = parts.length > 1 ? parts[1] : "";
            switch (command) {
                case "list":
                    displayList();
@@ -52,59 +59,45 @@ public class Popi {
                    break;
                case "mark":
                    try {
-
-                       this.list.get(Integer.parseInt(taskNumber) - 1).markAsDone();
+                       this.list.get(Integer.parseInt(task) - 1).markAsDone();
                    } catch (IndexOutOfBoundsException | NumberFormatException e) {
                        System.out.println("Invalid task number. Please try again.");
-                       System.out.println(newline);
                    }
+                   System.out.println(newline);
                    break;
                case "unmark":
                    try {
-                       this.list.get(Integer.parseInt(taskNumber) - 1).markAsUndone();
+                       this.list.get(Integer.parseInt(task) - 1).markAsUndone();
                    } catch (IndexOutOfBoundsException | NumberFormatException e) {
                        System.out.println("Invalid task number. Please try again.");
+                   }
+                   System.out.println(newline);
+                   break;
+               case "todo":
+                   addTask(new Todo(task));
+                   break;
+               case "deadline":
+                   String[] due = task.split(" /by ", 2);
+                   try {
+                       addTask(new Deadline(due[0], due[1]));
+                   } catch (ArrayIndexOutOfBoundsException e) {
+                       System.out.println("Please provide a deadline for the task.");
                        System.out.println(newline);
                    }
                    break;
-               default:
-                   addToList(new Task(input));
+               case "event":
+                   String[] time = input.split(" /from ", 2);
+                   try {
+                       String[] startEnd = time[1].split(" /to ", 2);
+                       addTask(new Event(time[0], startEnd[0], startEnd[1]));
+                   } catch (ArrayIndexOutOfBoundsException e) {
+                       System.out.println("Please provide a start and end time for the event.");
+                       System.out.println(newline);
+                   }
                    break;
            }
        }
        scanner.close();
-    }
-
-    private class Task {
-        protected String description;
-        protected boolean isDone;
-
-        public Task(String description) {
-            this.description = description;
-            this.isDone = false;
-        }
-
-        public String toString() {
-            return "[" + getStatusIcon() + "] " + this.description;
-        }
-
-        public String getStatusIcon() {
-            return (isDone ? "X" : " ");
-        }
-
-        private void markAsDone() {
-            this.isDone = true;
-            System.out.println("Nice! I've marked this task as done:");
-            System.out.println("  [X] " + this.description);
-            System.out.println(newline);
-        }
-
-        private void markAsUndone() {
-            this.isDone = false;
-            System.out.println("Ok, I've marked this task as not done yet:");
-            System.out.println("  [ ] " + this.description);
-            System.out.println(newline);
-        }
     }
 
     public static void main(String[] args) {
