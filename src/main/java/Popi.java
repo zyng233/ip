@@ -55,6 +55,14 @@ public class Popi {
        scanner.close();
     }
 
+    private void deleteTask(int task) {
+        Task deleted = this.list.remove(task - 1);
+        System.out.println("Noted. I've removed this task:");
+        System.out.println("  " + deleted);
+        System.out.println("Now you have " + this.list.size() + " tasks in the list.");
+        System.out.println(newline);
+    }
+
     private void handleCommand(String command, String task) {
         try {
             switch (command) {
@@ -97,6 +105,13 @@ public class Popi {
                         throw new EmptyDescriptionException("event");
                     }
                     addTask(new Event(time[0], startEnd[0], startEnd[1]));
+                    break;
+                case "delete":
+                    if (task.isEmpty()) {
+                        throw new EmptyDescriptionException("delete");
+                    } else {
+                        deleteTask(Integer.parseInt(task));
+                    }
                     break;
                 default:
                     throw new UnknownCommandException();
