@@ -50,54 +50,64 @@ public class Popi {
            String[] parts = input.split(" ", 2);
            String command = parts[0].toLowerCase();
            String task = parts.length > 1 ? parts[1] : "";
-           switch (command) {
-               case "list":
-                   displayList();
-                   break;
-               case "bye":
-                   start = false;
-                   break;
-               case "mark":
-                   try {
-                       this.list.get(Integer.parseInt(task) - 1).markAsDone();
-                   } catch (IndexOutOfBoundsException | NumberFormatException e) {
-                       System.out.println("Invalid task number. Please try again.");
-                   }
-                   System.out.println(newline);
-                   break;
-               case "unmark":
-                   try {
-                       this.list.get(Integer.parseInt(task) - 1).markAsUndone();
-                   } catch (IndexOutOfBoundsException | NumberFormatException e) {
-                       System.out.println("Invalid task number. Please try again.");
-                   }
-                   System.out.println(newline);
-                   break;
-               case "todo":
-                   addTask(new Todo(task));
-                   break;
-               case "deadline":
-                   String[] due = task.split(" /by ", 2);
-                   try {
-                       addTask(new Deadline(due[0], due[1]));
-                   } catch (ArrayIndexOutOfBoundsException e) {
-                       System.out.println("Please provide a deadline for the task.");
-                       System.out.println(newline);
-                   }
-                   break;
-               case "event":
-                   String[] time = input.split(" /from ", 2);
-                   try {
-                       String[] startEnd = time[1].split(" /to ", 2);
-                       addTask(new Event(time[0], startEnd[0], startEnd[1]));
-                   } catch (ArrayIndexOutOfBoundsException e) {
-                       System.out.println("Please provide a start and end time for the event.");
-                       System.out.println(newline);
-                   }
-                   break;
-           }
+           handleCommand(command, task);
        }
        scanner.close();
+    }
+
+    private void handleCommand(String command, String task) {
+        try {
+            switch (command) {
+                case "list":
+                    displayList();
+                    break;
+                case "bye":
+                    start = false;
+                    break;
+                case "mark":
+                    this.list.get(Integer.parseInt(task) - 1).markAsDone();
+                    System.out.println(newline);
+                    break;
+                case "unmark":
+                    this.list.get(Integer.parseInt(task) - 1).markAsUndone();
+                    System.out.println(newline);
+                    break;
+                case "todo":
+                    if (task.isEmpty()) {
+                        throw new EmptyDescriptionException("todo");
+                    } else {
+                        addTask(new Todo(task));
+                    }
+                    break;
+                case "deadline":
+                    String[] due = task.split(" /by ", 2);
+                    if (due.length < 2) {
+                        throw new EmptyDescriptionException("deadline");
+                    } else {
+                        addTask(new Deadline(due[0], due[1]));
+                    }
+                    break;
+                case "event":
+                    String[] time = task.split(" /from ", 2);
+                    if (time.length < 2) {
+                        throw new EmptyDescriptionException("event");
+                    }
+                    String[] startEnd = time[1].split(" /to ", 2);
+                    if (startEnd.length < 2) {
+                        throw new EmptyDescriptionException("event");
+                    }
+                    addTask(new Event(time[0], startEnd[0], startEnd[1]));
+                    break;
+                default:
+                    throw new UnknownCommandException();
+            }
+        } catch (EmptyDescriptionException | UnknownCommandException e) {
+            System.out.println(e.getMessage());
+            System.out.println(newline);
+        } catch (IndexOutOfBoundsException | NumberFormatException e) {
+            System.out.println("Invalid task number. Please try again.");
+            System.out.println(newline);
+        }
     }
 
     public static void main(String[] args) {
