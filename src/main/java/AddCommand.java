@@ -3,7 +3,7 @@ import java.time.LocalDateTime;
 public class AddCommand extends Command{
     private final Task task;
 
-    public AddCommand(String command) throws EmptyDescriptionException, InvalidTimeFormat, UnknownCommandException {
+    public AddCommand(String command) throws EmptyDescriptionException, InvalidTimeFormatException, UnknownCommandException {
         String[] parts = command.split(" ", 2);
         if (parts.length < 2) {
             throw new EmptyDescriptionException("The description of a task cannot be empty.");

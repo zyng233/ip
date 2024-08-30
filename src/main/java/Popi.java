@@ -22,8 +22,6 @@ public class Popi {
                 Command c = Parser.parse(fullCommand);
                 c.execute(list, ui, taskManager);
                 isExit = c.isExit();
-            } catch (InvalidTimeFormat | EmptyDescriptionException | UnknownCommandException e) {
-                ui.showError(e.getMessage());
             } catch (PopiException e) {
                 ui.showError(e.getMessage());
             }
