@@ -1,15 +1,19 @@
+import java.time.LocalDateTime;
+
 public class Event extends Task{
-    protected String start;
-    protected String end;
-    public Event(String description, String start, String end) {
-        super(description);
+    protected LocalDateTime start;
+    protected LocalDateTime end;
+
+    public Event(String description, LocalDateTime start, LocalDateTime end) {
+        super(description, start);
         this.start = start;
         this.end = end;
     }
 
     @Override
     public String toString() {
-        return "[E]" + super.toString() + " (from: " + this.start + " to: " + this.end + ")";
+        return "[E]" + super.toString() + " (from: " + DateTimeUtils.formatDateTime(start)
+                + " to: " + DateTimeUtils.formatDateTime(end) + ")";
     }
 
     @Override
@@ -19,6 +23,7 @@ public class Event extends Task{
 
     @Override
     public String toDataString() {
-        return getType() + " | " + (isDone ? "1" : "0") + " | " + description + " | " + start + " | " + end;
+        return getType() + " | " + (isDone ? "1" : "0") + " | " + description
+                + " | " + start + " | " + end;
     }
 }

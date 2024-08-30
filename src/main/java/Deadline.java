@@ -1,13 +1,15 @@
+import java.time.LocalDateTime;
+
 public class Deadline extends Task {
-    protected String end;
-    public Deadline(String description, String end) {
-        super(description);
+    protected LocalDateTime end;
+    public Deadline(String description, LocalDateTime end) {
+        super(description, end);
         this.end = end;
     }
 
     @Override
     public String toString() {
-        return "[D]" + super.toString() + " (by: " + this.end + ")";
+        return "[D]" + super.toString() + " (by: " + DateTimeUtils.formatDateTime(end) + ")";
     }
 
     @Override
@@ -17,6 +19,7 @@ public class Deadline extends Task {
 
     @Override
     public String toDataString() {
-        return getType() + " | " + (isDone ? "1" : "0") + " | " + this.description + " | " + this.end;
+        return getType() + " | " + (isDone ? "1" : "0") + " | "
+                + this.description + " | " + end;
     }
 }
