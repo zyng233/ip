@@ -32,6 +32,7 @@ public class TaskList {
     public void publicAddTask(Task task) {
         addTask(task);
     }
+
     protected Task unmarkTask(int index) throws IndexOutOfBoundsException {
         int taskIndex = index - 1;
         if (taskIndex < 0 || taskIndex >= tasks.size()) {
@@ -64,5 +65,9 @@ public class TaskList {
 
     public List<Task> getTasks() {
         return tasks;
+    }
+
+    public Task getTask(int index) {
+        return tasks.get(index - 1);
     }
 }
