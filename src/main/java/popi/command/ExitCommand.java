@@ -1,3 +1,9 @@
+package popi.command;
+
+import popi.task.TaskList;
+import popi.task.TaskManager;
+import popi.ui.Ui;
+
 public class ExitCommand extends Command {
     public ExitCommand() {
     }

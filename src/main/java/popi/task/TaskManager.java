@@ -1,13 +1,20 @@
+package popi.task;
+
+import popi.exception.PopiException;
+
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.time.LocalDateTime;
-import java.util.ArrayList;
 import java.util.List;
 
 public class TaskManager {
     private final String path = "./data/popi.txt";
+
+    public TaskList loadTasks() throws PopiException {
+        return load();
+    }
 
     protected TaskList load() throws PopiException {
         TaskList tasks = new TaskList();
@@ -54,6 +61,10 @@ public class TaskManager {
             t.markAsDone();
         }
         return t;
+    }
+
+    public void publicSaveTask(TaskList tasks) throws PopiException {
+        save(tasks);
     }
 
     protected void save(TaskList task) throws PopiException {

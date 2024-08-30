@@ -1,6 +1,16 @@
+package popi.command;
+
+import popi.exception.EmptyDescriptionException;
+import popi.exception.InvalidTimeFormatException;
+import popi.exception.PopiException;
+import popi.exception.UnknownCommandException;
+import popi.task.*;
+import popi.ui.Ui;
+import popi.utils.DateTimeUtils;
+
 import java.time.LocalDateTime;
 
-public class AddCommand extends Command{
+public class AddCommand extends Command {
     private final Task task;
 
     public AddCommand(String command) throws EmptyDescriptionException, InvalidTimeFormatException, UnknownCommandException {
@@ -43,8 +53,8 @@ public class AddCommand extends Command{
 
     @Override
     public void execute(TaskList tasks, Ui ui, TaskManager taskManager) throws PopiException {
-        tasks.addTask(task);
-        taskManager.save(tasks);
+        tasks.publicAddTask(task);
+        taskManager.publicSaveTask(tasks);
         ui.showTaskAdded(task, tasks);
     }
 }

@@ -1,3 +1,9 @@
+package popi.command;
+
+import popi.command.*;
+import popi.exception.PopiException;
+import popi.exception.UnknownCommandException;
+
 public class Parser {
     public static Command parse(String input) throws PopiException {
         String[] parts = input.split(" ", 2);

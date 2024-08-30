@@ -1,3 +1,8 @@
+package popi.task;
+
+import popi.exception.PopiException;
+import popi.task.Task;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -12,6 +17,21 @@ public class TaskList {
         tasks.add(task);
     }
 
+    public Task publicMarkTask(int index) throws PopiException {
+        return markTask(index);
+    }
+
+    public Task publicDeleteTask(int index) throws PopiException {
+        return deleteTask(index);
+    }
+
+    public Task publicUnmarkTask(int index) throws PopiException {
+        return unmarkTask(index);
+    }
+
+    public void publicAddTask(Task task) {
+        addTask(task);
+    }
     protected Task unmarkTask(int index) throws IndexOutOfBoundsException {
         int taskIndex = index - 1;
         if (taskIndex < 0 || taskIndex >= tasks.size()) {

@@ -1,12 +1,21 @@
+package popi.core;
+
+import popi.command.Command;
+import popi.command.Parser;
+import popi.exception.PopiException;
+import popi.task.TaskList;
+import popi.task.TaskManager;
+import popi.ui.Ui;
+
 public class Popi {
     private TaskList list;
-    private TaskManager taskManager;
-    private Ui ui;
+    private final TaskManager taskManager;
+    private final Ui ui;
     public Popi() {
         ui = new Ui();
         taskManager = new TaskManager();
         try {
-            list = taskManager.load();
+            list = taskManager.loadTasks();
         } catch (PopiException e) {
             ui.showError(e.getMessage());
             list = new TaskList();

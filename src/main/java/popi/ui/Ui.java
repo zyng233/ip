@@ -1,3 +1,8 @@
+package popi.ui;
+
+import popi.task.Task;
+import popi.task.TaskList;
+
 import java.util.Scanner;
 
 public class Ui {
