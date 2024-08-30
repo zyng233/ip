@@ -1,10 +1,13 @@
+import java.time.LocalDateTime;
+
 public abstract class Task {
     protected String description;
     protected boolean isDone;
-    protected String type;
+    protected LocalDateTime time;
 
-    public Task(String description) {
+    public Task(String description, LocalDateTime time) {
         this.description = description;
+        this.time = time;
         this.isDone = false;
     }
 

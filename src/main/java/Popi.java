@@ -1,4 +1,6 @@
 import java.io.IOException;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeParseException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
@@ -10,11 +12,11 @@ public class Popi {
     private boolean start;
     public Popi() {
         this.taskManager = new TaskManager();
+        this.start = true;
         try {
             this.list = this.taskManager.load();
-            this.start = true;
-        } catch (Exception e) {
-            System.out.println("Error loading tasks. Starting with an empty list.");
+        } catch (IOException e) {
+            System.out.println("Error loading tasks." + e.getMessage());
             this.list = new ArrayList<>();
         }
     }
@@ -97,15 +99,15 @@ public class Popi {
                     taskToMark.markAsDone();
                     saveTask();
                     System.out.println("Nice! I've marked this task as done:");
-                    System.out.println("  [X] " + this.list.get(Integer.parseInt(task) - 1).description);
+                    System.out.println(taskToMark);
                     System.out.println(newline);
                     break;
                 case "unmark":
                     Task taskToUnmark = this.list.get(Integer.parseInt(task) - 1);
                     taskToUnmark.markAsUndone();
                     saveTask();
-                    System.out.println("Ok, I've marked this task as not done yet:");
-                    System.out.println("  [ ] " + taskToUnmark.description);
+                    System.out.println("Ok, I've unmarked this task as not done yet:");
+                    System.out.println(taskToUnmark);
                     System.out.println(newline);
                     break;
                 case "todo":
@@ -120,7 +122,8 @@ public class Popi {
                     if (due.length < 2) {
                         throw new EmptyDescriptionException("deadline");
                     }
-                    addTask(new Deadline(due[0], due[1]));
+                    LocalDateTime deadline = DateTimeUtils.parseDataTime(due[1]);
+                    addTask(new Deadline(due[0], deadline));
                     break;
                 case "event":
                     String[] time = task.split(" /from ", 2);
@@ -131,7 +134,9 @@ public class Popi {
                     if (startEnd.length < 2) {
                         throw new EmptyDescriptionException("event");
                     }
-                    addTask(new Event(time[0], startEnd[0], startEnd[1]));
+                    LocalDateTime start = DateTimeUtils.parseDataTime(startEnd[0]);
+                    LocalDateTime end = DateTimeUtils.parseDataTime(startEnd[1]);
+                    addTask(new Event(time[0], start, end));
                     break;
                 case "delete":
                     if (task.isEmpty()) {
@@ -143,7 +148,7 @@ public class Popi {
                 default:
                     throw new UnknownCommandException();
             }
-        } catch (EmptyDescriptionException | UnknownCommandException e) {
+        } catch (EmptyDescriptionException | UnknownCommandException | InvalidTimeFormat e) {
             System.out.println(e.getMessage());
             System.out.println(newline);
         } catch (IndexOutOfBoundsException | NumberFormatException e) {
