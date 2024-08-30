@@ -13,6 +13,14 @@ import java.time.LocalDateTime;
 public class AddCommand extends Command {
     private final Task task;
 
+    /**
+     * Constructor for AddCommand.
+     *
+     * @param command The command string to be parsed, which should include the task type and description.
+     * @throws EmptyDescriptionException If the description of the task is empty.
+     * @throws InvalidTimeFormatException If the time format is invalid.
+     * @throws UnknownCommandException If the command is not recognised or the command is empty.
+     */
     public AddCommand(String command) throws EmptyDescriptionException, InvalidTimeFormatException, UnknownCommandException {
         if (command == null || command.trim().isEmpty()) {
             throw new UnknownCommandException();

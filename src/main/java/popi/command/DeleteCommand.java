@@ -8,6 +8,12 @@ import popi.ui.Ui;
 
 public class DeleteCommand extends Command {
     private final int taskNumber;
+
+    /**
+     * Constructor for DeleteCommand.
+     *
+     * @param taskNumber The task number to be deleted.
+     */
     public DeleteCommand(int taskNumber) {
         this.taskNumber = taskNumber;
     }

@@ -11,6 +11,7 @@ public class Popi {
     private TaskList list;
     private final TaskManager taskManager;
     private final Ui ui;
+
     public Popi() {
         ui = new Ui();
         taskManager = new TaskManager();
@@ -22,6 +23,9 @@ public class Popi {
         }
     }
 
+    /**
+     * Runs the main program loop.
+     */
     public void run() {
         ui.showWelcome();
         boolean isExit = false;

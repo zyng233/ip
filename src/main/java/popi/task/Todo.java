@@ -3,6 +3,11 @@ package popi.task;
 import popi.task.Task;
 
 public class Todo extends Task {
+
+    /**
+     * Constructor for Todo.
+     * @param description Description of the todo.
+     */
     public Todo(String description) {
         super(description, null);
     }

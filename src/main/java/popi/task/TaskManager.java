@@ -12,6 +12,11 @@ import java.util.List;
 public class TaskManager {
     private final String path = "./data/popi.txt";
 
+    /**
+     * Loads tasks from the file.
+     * @return Task list loaded from the file.
+     * @throws PopiException If there is an error loading the tasks.
+     */
     public TaskList loadTasks() throws PopiException {
         return load();
     }
@@ -63,6 +68,11 @@ public class TaskManager {
         return t;
     }
 
+    /**
+     * Saves tasks to the file.
+     * @param tasks Task list to be saved.
+     * @throws PopiException If there is an error saving the tasks.
+     */
     public void publicSaveTask(TaskList tasks) throws PopiException {
         save(tasks);
     }

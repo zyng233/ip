@@ -10,6 +10,10 @@ import popi.ui.Ui;
 public class UnmarkCommand extends Command {
     private final int taskNumber;
 
+    /**
+     * Constructor for UnmarkCommand.
+     * @param taskNumber The task number to be unmarked.
+     */
     public UnmarkCommand(int taskNumber) {
         this.taskNumber = taskNumber;
     }

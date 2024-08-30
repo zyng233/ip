@@ -12,6 +12,10 @@ public class Ui {
         this.scanner = new Scanner(System.in);
     }
 
+    /**
+     * Reads the next line of input from the user.
+     * @return The next line of input from the user.
+     */
     public String readCommand() {
         return scanner.nextLine();
     }
@@ -33,12 +37,21 @@ public class Ui {
         showLine();
     }
 
+    /**
+     * Shows the error message.
+     * @param message Error message to be shown.
+     */
     public void showError(String message) {
         showLine();
         System.out.println(message);
         showLine();
     }
 
+    /**
+     * Shows the added task and number of tasks in the task list.
+     * @param task Task added to be shown.
+     * @param tasks List of tasks to be calculated.
+     */
     public void showTaskAdded(Task task, TaskList tasks) {
         showLine();
         System.out.println("Got it. I've added this task:");
@@ -47,6 +60,11 @@ public class Ui {
         showLine();
     }
 
+    /**
+     * Shows the deleted task and number of tasks in the task list.
+     * @param task Task deleted to be shown.
+     * @param tasks List of tasks to be calculated.
+     */
     public void showTaskDeleted(Task task, TaskList tasks) {
         showLine();
         System.out.println("Noted. I've removed this task:");
@@ -55,6 +73,10 @@ public class Ui {
         showLine();
     }
 
+    /**
+     * Shows the new marked task.
+     * @param task Task to be marked.
+     */
     public void showTaskMarked(Task task) {
         showLine();
         System.out.println("Nice! I've marked this task as done:");
@@ -62,6 +84,10 @@ public class Ui {
         showLine();
     }
 
+    /**
+     * Shows the new unmarked task.
+     * @param task Task to be unmarked.
+     */
     public void showTaskUnmarked(Task task) {
         showLine();
         System.out.println("Nice! I've marked this task as undone:");

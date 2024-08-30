@@ -32,8 +32,8 @@ application {
 }
 
 shadowJar {
-    archiveBaseName = "popi"
-    archiveClassifier = null
+    archiveBaseName.set("popi")
+    archiveClassifier.set("")
 }
 
 run{
