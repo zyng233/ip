@@ -110,7 +110,7 @@ public class Popi {
                     if (task.isEmpty()) {
                         throw new EmptyDescriptionException("delete");
                     } else {
-                        deleteTask(Integer.parseInt(task));
+                        deleteTask(Integer.parseInt(task) - 1);
                     }
                     break;
                 default:
