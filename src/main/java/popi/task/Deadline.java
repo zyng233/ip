@@ -6,6 +6,7 @@ import java.time.LocalDateTime;
 
 public class Deadline extends Task {
     protected LocalDateTime end;
+
     public Deadline(String description, LocalDateTime end) {
         super(description, end);
         this.end = end;

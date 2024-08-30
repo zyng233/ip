@@ -11,6 +11,7 @@ public class Popi {
     private TaskList list;
     private final TaskManager taskManager;
     private final Ui ui;
+
     public Popi() {
         ui = new Ui();
         taskManager = new TaskManager();
