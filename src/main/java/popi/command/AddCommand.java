@@ -34,32 +34,32 @@ public class AddCommand extends Command {
         String description = parts[1];
 
         switch (type) {
-            case "todo":
-                if (description.isBlank()) {
-                    throw new EmptyDescriptionException("The description of a todo cannot be empty.");
-                }
-                task = new Todo(description);
-                break;
-            case "deadline":
-                String[] deadline = description.split(" /by ", 2);
-                if (deadline.length < 2) {
-                    throw new EmptyDescriptionException("The description and due date of a deadline cannot be empty.");
-                }
-                LocalDateTime due = DateTimeUtils.parseDataTime(deadline[1]);
-                task = new Deadline(deadline[0], due);
-                break;
-            case "event":
-                String[] event = description.split(" /from | /to ");
-                if (event.length < 3) {
-                    throw new EmptyDescriptionException("The description and time of an event cannot be empty.");
-                }
+        case "todo":
+            if (description.isBlank()) {
+                throw new EmptyDescriptionException("The description of a todo cannot be empty.");
+            }
+            task = new Todo(description);
+            break;
+        case "deadline":
+            String[] deadline = description.split(" /by ", 2);
+            if (deadline.length < 2) {
+                throw new EmptyDescriptionException("The description and due date of a deadline cannot be empty.");
+            }
+            LocalDateTime due = DateTimeUtils.parseDataTime(deadline[1]);
+            task = new Deadline(deadline[0], due);
+            break;
+        case "event":
+            String[] event = description.split(" /from | /to ");
+            if (event.length < 3) {
+                throw new EmptyDescriptionException("The description and time of an event cannot be empty.");
+            }
 
-                LocalDateTime start = DateTimeUtils.parseDataTime(event[1]);
-                LocalDateTime end = DateTimeUtils.parseDataTime(event[2]);
-                task = new Event(event[0], start, end);
-                break;
-            default:
-                throw new UnknownCommandException();
+            LocalDateTime start = DateTimeUtils.parseDataTime(event[1]);
+            LocalDateTime end = DateTimeUtils.parseDataTime(event[2]);
+            task = new Event(event[0], start, end);
+            break;
+        default:
+            throw new UnknownCommandException();
         }
     }
 

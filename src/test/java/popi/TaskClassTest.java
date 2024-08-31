@@ -6,6 +6,8 @@ import popi.task.Task;
 import popi.task.TaskList;
 import popi.task.Todo;
 
+import org.junit.jupiter.api.Test;
+
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class TaskClassTest {
