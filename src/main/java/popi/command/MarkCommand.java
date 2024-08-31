@@ -13,7 +13,10 @@ public class MarkCommand extends Command {
 
     /**
      * Constructor for MarkCommand.
-     * @param command The command to mark task
+     *
+     * @param command The command string that was entered by the user.
+     * @throws EmptyDescriptionException If the task number is empty.
+     * @throws InvalidTaskNumberException If the task number is not a number.
      */
     public MarkCommand(String command) throws EmptyDescriptionException, InvalidTaskNumberException {
         String[] parts = command.split(" ");

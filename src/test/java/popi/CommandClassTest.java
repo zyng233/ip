@@ -16,7 +16,6 @@ import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
 public class CommandClassTest {
-
     private TaskList tasks;
     private Ui ui;
     private TaskManager taskManager;
@@ -32,7 +31,7 @@ public class CommandClassTest {
     }
 
     @Test
-    public void testInvalidCommand() throws UnknownCommandException {
+    public void testInvalidCommand() {
         assertThrows(UnknownCommandException.class, () -> {
             Command command = new AddCommand("");
             command.execute(tasks, ui, taskManager);
@@ -45,7 +44,7 @@ public class CommandClassTest {
     }
 
     @Test
-    public void testEmptyDescription() throws EmptyDescriptionException {
+    public void testEmptyDescription() {
         assertThrows(EmptyDescriptionException.class, () -> {
             Command command = new AddCommand("todo");
             command.execute(tasks, ui, taskManager);
@@ -63,7 +62,7 @@ public class CommandClassTest {
     }
 
     @Test
-    public void testInvalidTimeFormat() throws InvalidTimeFormatException {
+    public void testInvalidTimeFormat() {
         assertThrows(InvalidTimeFormatException.class, () -> {
             Command command = new AddCommand("deadline project /by 2021-08-01");
             command.execute(tasks, ui, taskManager);

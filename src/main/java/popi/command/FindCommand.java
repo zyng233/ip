@@ -9,6 +9,12 @@ import popi.ui.Ui;
 public class FindCommand extends Command {
     private final String keyword;
 
+    /**
+     * Constructor for FindCommand.
+     *
+     * @param command The command string that was entered by the user.
+     * @throws EmptyDescriptionException If the keyword is empty.
+     */
     public FindCommand(String command) throws EmptyDescriptionException {
         String[] parts = command.split(" ", 2);
 

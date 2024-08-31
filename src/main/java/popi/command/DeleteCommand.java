@@ -14,7 +14,9 @@ public class DeleteCommand extends Command {
     /**
      * Constructor for DeleteCommand.
      *
-     * @param command The command to delete task
+     * @param command The command string that was entered by the user.
+     * @throws EmptyDescriptionException If the task number is empty.
+     * @throws InvalidTaskNumberException If the task number is not a number.
      */
     public DeleteCommand(String command) throws EmptyDescriptionException, InvalidTaskNumberException {
         String[] parts = command.split(" ");

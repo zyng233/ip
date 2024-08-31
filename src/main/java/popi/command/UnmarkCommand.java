@@ -14,9 +14,10 @@ public class UnmarkCommand extends Command {
 
     /**
      * Constructor for UnmarkCommand.
-     * @param command The command to unmark task
-     * @throws EmptyDescriptionException
-     * @throws InvalidTaskNumberException
+     *
+     * @param command The command string that was entered by the user.
+     * @throws EmptyDescriptionException If the task number is empty.
+     * @throws InvalidTaskNumberException If the task number is not a number.
      */
     public UnmarkCommand(String command) throws EmptyDescriptionException, InvalidTaskNumberException {
         String[] parts = command.split(" ");
