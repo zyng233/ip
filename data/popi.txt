@@ -1,0 +1,4 @@
+T | 0 | read book
+E | 0 | sleeping | 2020-02-20T00:00 | 2020-02-20T12:00
+D | 0 | return book | 2020-02-20T00:00
+T | 0 | play
