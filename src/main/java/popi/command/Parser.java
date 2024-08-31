@@ -12,10 +12,11 @@ public class Parser {
         return switch (command) {
             case "bye" -> new ExitCommand();
             case "list" -> new ListCommand();
-            case "mark" -> new MarkCommand(Integer.parseInt(parts[1]));
-            case "unmark" -> new UnmarkCommand(Integer.parseInt(parts[1]));
-            case "delete" -> new DeleteCommand(Integer.parseInt(parts[1]));
+            case "mark" -> new MarkCommand(input);
+            case "unmark" -> new UnmarkCommand(input);
+            case "delete" -> new DeleteCommand(input);
             case "todo", "deadline", "event" -> new AddCommand(input);
+            case "find" -> new FindCommand(input);
             default -> throw new UnknownCommandException();
         };
     }
