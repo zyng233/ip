@@ -1,5 +1,7 @@
 package popi.command;
 
+import popi.exception.EmptyDescriptionException;
+import popi.exception.InvalidTaskNumberException;
 import popi.exception.PopiException;
 import popi.task.Task;
 import popi.task.TaskList;
@@ -11,10 +13,20 @@ public class MarkCommand extends Command {
 
     /**
      * Constructor for MarkCommand.
-     * @param taskNumber The task number to be marked.
+     * @param command The command to mark task
      */
-    public MarkCommand(int taskNumber) {
-        this.taskNumber = taskNumber;
+    public MarkCommand(String command) throws EmptyDescriptionException, InvalidTaskNumberException {
+        String[] parts = command.split(" ");
+
+        if (parts.length < 2) {
+            throw new EmptyDescriptionException("The task number cannot be empty.");
+        }
+
+        try {
+            taskNumber = Integer.parseInt(parts[1]);
+        } catch (NumberFormatException e) {
+            throw new InvalidTaskNumberException("Task number must be a number");
+        }
     }
 
     @Override

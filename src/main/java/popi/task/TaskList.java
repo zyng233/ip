@@ -1,5 +1,6 @@
 package popi.task;
 
+import popi.exception.InvalidTaskNumberException;
 import popi.exception.PopiException;
 
 import java.util.ArrayList;
@@ -54,33 +55,33 @@ public class TaskList {
         addTask(task);
     }
 
-    protected Task unmarkTask(int index) throws IndexOutOfBoundsException {
-        int taskIndex = index - 1;
-        if (taskIndex < 0 || taskIndex >= tasks.size()) {
-            throw new IndexOutOfBoundsException("Invalid task index");
+    protected Task unmarkTask(int index) throws InvalidTaskNumberException {
+        index -= 1;
+        if (index < 0 || index >= tasks.size()) {
+            throw new InvalidTaskNumberException("Invalid task number");
         }
-        Task task = tasks.get(taskIndex);
+        Task task = tasks.get(index);
         task.markAsUndone();
         return task;
     }
 
-    protected Task markTask(int index) throws PopiException {
-        int taskIndex = index - 1;
-        if (taskIndex < 0 || taskIndex >= tasks.size()) {
-            throw new PopiException("Invalid task number");
+    protected Task markTask(int index) throws InvalidTaskNumberException {
+        index -= 1;
+        if (index < 0 || index >= tasks.size()) {
+            throw new InvalidTaskNumberException("Invalid task number");
         }
-        Task task = tasks.get(taskIndex);
+        Task task = tasks.get(index);
         task.markAsDone();
         return task;
     }
 
-    protected Task deleteTask(int index) throws PopiException {
-        int taskIndex = index - 1;
-        if (taskIndex < 0 || taskIndex >= tasks.size()) {
-            throw new PopiException("Invalid task number");
+    protected Task deleteTask(int index) throws InvalidTaskNumberException {
+        index -= 1;
+        if (index < 0 || index >= tasks.size()) {
+            throw new InvalidTaskNumberException("Invalid task number");
         }
-        Task task = tasks.get(taskIndex);
-        tasks.remove(taskIndex);
+        Task task = tasks.get(index);
+        tasks.remove(index);
         return task;
     }
 
@@ -99,5 +100,19 @@ public class TaskList {
      */
     public Task getTask(int index) {
         return tasks.get(index - 1);
+    }
+
+    public TaskList findTasks(String keyword) {
+        TaskList matchingTasks = new TaskList();
+        for (Task task : tasks) {
+            if (task.getDescription().toLowerCase().contains(keyword.toLowerCase())) {
+                matchingTasks.addTask(task);
+            }
+        }
+        return matchingTasks;
+    }
+
+    public boolean isEmpty() {
+        return tasks.isEmpty();
     }
 }

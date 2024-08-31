@@ -94,4 +94,13 @@ public class Ui {
         System.out.println("  " + task);
         showLine();
     }
+
+    public void showMatchingTasks(TaskList tasks) {
+        showLine();
+        System.out.println("Here are the matching tasks in your list:");
+        for (int i = 0; i < tasks.getTasks().size(); i++) {
+            System.out.println((i + 1) + ". " + tasks.getTasks().get(i));
+        }
+        showLine();
+    }
 }

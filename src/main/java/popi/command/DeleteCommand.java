@@ -1,5 +1,7 @@
 package popi.command;
 
+import popi.exception.EmptyDescriptionException;
+import popi.exception.InvalidTaskNumberException;
 import popi.exception.PopiException;
 import popi.task.Task;
 import popi.task.TaskList;
@@ -12,10 +14,20 @@ public class DeleteCommand extends Command {
     /**
      * Constructor for DeleteCommand.
      *
-     * @param taskNumber The task number to be deleted.
+     * @param command The command to delete task
      */
-    public DeleteCommand(int taskNumber) {
-        this.taskNumber = taskNumber;
+    public DeleteCommand(String command) throws EmptyDescriptionException, InvalidTaskNumberException {
+        String[] parts = command.split(" ");
+
+        if (parts.length < 2) {
+            throw new EmptyDescriptionException("The task number cannot be empty.");
+        }
+
+        try {
+            taskNumber = Integer.parseInt(parts[1]);
+        } catch (NumberFormatException e) {
+            throw new InvalidTaskNumberException("Task number must be a number");
+        }
     }
 
     @Override
