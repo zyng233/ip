@@ -8,6 +8,9 @@ import popi.task.TaskList;
 import popi.task.TaskManager;
 import popi.ui.Ui;
 
+/**
+ * Represents a command to mark a task as done.
+ */
 public class MarkCommand extends Command {
     private final int taskNumber;
 

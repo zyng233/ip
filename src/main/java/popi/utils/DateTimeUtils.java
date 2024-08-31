@@ -1,12 +1,15 @@
 package popi.utils;
 
-import popi.exception.InvalidTimeFormatException;
-
 import java.time.DateTimeException;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 
+import popi.exception.InvalidTimeFormatException;
+
+/**
+ * Utility class for parsing and formatting date and time.
+ */
 public class DateTimeUtils {
     private static final DateTimeFormatter INPUT = DateTimeFormatter.ofPattern("yyyy-MM-dd HHmm");
     private static final DateTimeFormatter OUTPUT = DateTimeFormatter.ofPattern("MMM d yyyy HH:mm");

@@ -1,5 +1,10 @@
 package popi;
 
+import static org.junit.jupiter.api.Assertions.assertThrows;
+
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+
 import popi.command.AddCommand;
 import popi.command.Command;
 import popi.exception.EmptyDescriptionException;
@@ -9,11 +14,6 @@ import popi.exception.UnknownCommandException;
 import popi.task.TaskList;
 import popi.task.TaskManager;
 import popi.ui.Ui;
-
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
-
-import static org.junit.jupiter.api.Assertions.assertThrows;
 
 public class CommandClassTest {
     private TaskList tasks;

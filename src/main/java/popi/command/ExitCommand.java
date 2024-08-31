@@ -4,6 +4,9 @@ import popi.task.TaskList;
 import popi.task.TaskManager;
 import popi.ui.Ui;
 
+/**
+ * Represents a command to exit the program.
+ */
 public class ExitCommand extends Command {
     public ExitCommand() {
     }

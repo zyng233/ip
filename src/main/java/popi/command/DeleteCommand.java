@@ -8,6 +8,9 @@ import popi.task.TaskList;
 import popi.task.TaskManager;
 import popi.ui.Ui;
 
+/**
+ * Represents a command to delete a task.
+ */
 public class DeleteCommand extends Command {
     private final int taskNumber;
 

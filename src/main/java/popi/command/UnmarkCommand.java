@@ -1,6 +1,5 @@
 package popi.command;
 
-import popi.command.Command;
 import popi.exception.EmptyDescriptionException;
 import popi.exception.InvalidTaskNumberException;
 import popi.exception.PopiException;
@@ -9,6 +8,9 @@ import popi.task.TaskList;
 import popi.task.TaskManager;
 import popi.ui.Ui;
 
+/**
+ * Represents a command to unmark a task as done.
+ */
 public class UnmarkCommand extends Command {
     private final int taskNumber;
 

@@ -7,11 +7,17 @@ import popi.task.TaskList;
 import popi.task.TaskManager;
 import popi.ui.Ui;
 
+/**
+ * Main class for the Popi program.
+ */
 public class Popi {
     private TaskList list;
     private final TaskManager taskManager;
     private final Ui ui;
 
+    /**
+     * Constructor for Popi.
+     */
     public Popi() {
         ui = new Ui();
         taskManager = new TaskManager();

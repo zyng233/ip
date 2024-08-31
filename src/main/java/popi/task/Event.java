@@ -1,9 +1,12 @@
 package popi.task;
 
-import popi.utils.DateTimeUtils;
-
 import java.time.LocalDateTime;
 
+import popi.utils.DateTimeUtils;
+
+/**
+ * Represents an event task.
+ */
 public class Event extends Task {
     protected LocalDateTime start;
     protected LocalDateTime end;

@@ -5,8 +5,10 @@ import popi.task.TaskList;
 import popi.task.TaskManager;
 import popi.ui.Ui;
 
+/**
+ * Represents a command that can be executed by the user.
+ */
 public abstract class Command {
-
     /**
      * Executes the command.
      *

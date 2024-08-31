@@ -2,6 +2,9 @@ package popi.task;
 
 import java.time.LocalDateTime;
 
+/**
+ * Represents a task.
+ */
 public abstract class Task {
     protected String description;
     protected boolean isDone;

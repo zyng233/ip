@@ -1,9 +1,11 @@
 package popi.command;
 
-import popi.command.*;
 import popi.exception.PopiException;
 import popi.exception.UnknownCommandException;
 
+/**
+ * Represents a parser that parses the input and returns the corresponding Command object.
+ */
 public class Parser {
 
     /**
@@ -17,14 +19,14 @@ public class Parser {
         String command = parts[0];
 
         return switch (command) {
-            case "bye" -> new ExitCommand();
-            case "list" -> new ListCommand();
-            case "mark" -> new MarkCommand(input);
-            case "unmark" -> new UnmarkCommand(input);
-            case "delete" -> new DeleteCommand(input);
-            case "todo", "deadline", "event" -> new AddCommand(input);
-            case "find" -> new FindCommand(input);
-            default -> throw new UnknownCommandException();
+        case "bye" -> new ExitCommand();
+        case "list" -> new ListCommand();
+        case "mark" -> new MarkCommand(input);
+        case "unmark" -> new UnmarkCommand(input);
+        case "delete" -> new DeleteCommand(input);
+        case "todo", "deadline", "event" -> new AddCommand(input);
+        case "find" -> new FindCommand(input);
+        default -> throw new UnknownCommandException();
         };
     }
 }

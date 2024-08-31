@@ -1,27 +1,36 @@
 package popi.command;
 
+import java.time.LocalDateTime;
+
 import popi.exception.EmptyDescriptionException;
 import popi.exception.InvalidTimeFormatException;
 import popi.exception.PopiException;
 import popi.exception.UnknownCommandException;
-import popi.task.*;
+import popi.task.Deadline;
+import popi.task.Event;
+import popi.task.Task;
+import popi.task.TaskList;
+import popi.task.TaskManager;
+import popi.task.Todo;
 import popi.ui.Ui;
 import popi.utils.DateTimeUtils;
 
-import java.time.LocalDateTime;
-
+/**
+ * Represents a command to add a task to the task list.
+ */
 public class AddCommand extends Command {
     private final Task task;
 
     /**
      * Constructor for AddCommand.
      *
-     * @param command The command string to be parsed, which should include the task type and description.
+     * @param command The command to be parsed, which should include the task type and description.
      * @throws EmptyDescriptionException If the description of the task is empty.
      * @throws InvalidTimeFormatException If the time format is invalid.
      * @throws UnknownCommandException If the command is not recognised or the command is empty.
      */
-    public AddCommand(String command) throws EmptyDescriptionException, InvalidTimeFormatException, UnknownCommandException {
+    public AddCommand(String command) throws EmptyDescriptionException,
+            InvalidTimeFormatException, UnknownCommandException {
         if (command == null || command.trim().isEmpty()) {
             throw new UnknownCommandException();
         }

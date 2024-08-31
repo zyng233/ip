@@ -1,9 +1,12 @@
 package popi.task;
 
-import popi.utils.DateTimeUtils;
-
 import java.time.LocalDateTime;
 
+import popi.utils.DateTimeUtils;
+
+/**
+ * Represents a deadline task.
+ */
 public class Deadline extends Task {
     protected LocalDateTime end;
 

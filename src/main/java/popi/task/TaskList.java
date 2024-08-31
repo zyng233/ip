@@ -1,11 +1,14 @@
 package popi.task;
 
-import popi.exception.InvalidTaskNumberException;
-import popi.exception.PopiException;
-
 import java.util.ArrayList;
 import java.util.List;
 
+import popi.exception.InvalidTaskNumberException;
+import popi.exception.PopiException;
+
+/**
+ * Represents a list of tasks.
+ */
 public class TaskList {
     private final List<Task> tasks;
 
@@ -102,6 +105,10 @@ public class TaskList {
         return tasks.get(index - 1);
     }
 
+    /**
+     * Returns the number of tasks in the task list.
+     * @return Number of tasks in the task list.
+     */
     public TaskList findTasks(String keyword) {
         TaskList matchingTasks = new TaskList();
         for (Task task : tasks) {
@@ -112,6 +119,10 @@ public class TaskList {
         return matchingTasks;
     }
 
+    /**
+     * Check if the task list is empty.
+     * @return True if the task list is empty.
+     */
     public boolean isEmpty() {
         return tasks.isEmpty();
     }

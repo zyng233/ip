@@ -1,10 +1,13 @@
 package popi.ui;
 
+import java.util.Scanner;
+
 import popi.task.Task;
 import popi.task.TaskList;
 
-import java.util.Scanner;
-
+/**
+ * Represents the user interface of the application.
+ */
 public class Ui {
     private final Scanner scanner;
 
@@ -20,10 +23,16 @@ public class Ui {
         return scanner.nextLine();
     }
 
+    /**
+     * Shows the line separator.
+     */
     public void showLine() {
         System.out.println("____________________________________________________________");
     }
 
+    /**
+     * Shows the welcome message.
+     */
     public void showWelcome() {
         showLine();
         System.out.println("Hello! I'm Popi");
@@ -31,6 +40,9 @@ public class Ui {
         showLine();
     }
 
+    /**
+     * Shows the goodbye message.
+     */
     public void showGoodbye() {
         showLine();
         System.out.println("Bye. Hope to see you again soon!");
@@ -95,6 +107,10 @@ public class Ui {
         showLine();
     }
 
+    /**
+     * Shows the list of tasks found.
+     * @param tasks List of tasks to be shown.
+     */
     public void showMatchingTasks(TaskList tasks) {
         showLine();
         System.out.println("Here are the matching tasks in your list:");

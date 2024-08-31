@@ -6,6 +6,9 @@ import popi.task.TaskList;
 import popi.task.TaskManager;
 import popi.ui.Ui;
 
+/**
+ * Represents a command to find tasks that match a keyword.
+ */
 public class FindCommand extends Command {
     private final String keyword;
 
