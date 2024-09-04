@@ -37,7 +37,7 @@ public class UnmarkCommand extends Command {
 
     @Override
     public void execute(TaskList tasks, Ui ui, TaskManager taskManager) throws PopiException {
-        Task task = tasks.publicUnmarkTask(taskNumber);
+        Task task = tasks.unmarkTask(taskNumber);
         taskManager.publicSaveTask(tasks);
         ui.showTaskUnmarked(task);
     }

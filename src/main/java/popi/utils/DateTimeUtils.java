@@ -20,7 +20,7 @@ public class DateTimeUtils {
      * @return LocalDateTime object parsed from the string.
      * @throws InvalidTimeFormatException If the string is not in the correct format.
      */
-    public static LocalDateTime parseDataTime(String dateTime) throws InvalidTimeFormatException {
+    public static LocalDateTime parseDateTime(String dateTime) throws InvalidTimeFormatException {
         try {
             return LocalDateTime.parse(dateTime, INPUT);
         } catch (DateTimeParseException e) {

@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import popi.exception.InvalidTaskNumberException;
-import popi.exception.PopiException;
 
 /**
  * Represents a list of tasks.
@@ -16,49 +15,21 @@ public class TaskList {
         tasks = new ArrayList<>();
     }
 
-    protected void addTask(Task task) {
-        tasks.add(task);
-    }
-
-    /**
-     * Marks a task as done.
-     * @param index Index of the task to be marked as done.
-     * @return Task that was marked as done.
-     * @throws PopiException If the task index is invalid.
-     */
-    public Task publicMarkTask(int index) throws PopiException {
-        return markTask(index);
-    }
-
-    /**
-     * Deletes a task.
-     * @param index Index of the task to be deleted.
-     * @return Task that was deleted.
-     * @throws PopiException If the task index is invalid.
-     */
-    public Task publicDeleteTask(int index) throws PopiException {
-        return deleteTask(index);
-    }
-
-    /**
-     * Unmarks a task as done.
-     * @param index Index of the task to be unmarked.
-     * @return Task that was unmarked.
-     * @throws PopiException If the task index is invalid.
-     */
-    public Task publicUnmarkTask(int index) throws PopiException {
-        return unmarkTask(index);
-    }
-
     /**
      * Adds a task to the task list.
      * @param task Task to be added.
      */
-    public void publicAddTask(Task task) {
-        addTask(task);
+    public void addTask(Task task) {
+        tasks.add(task);
     }
 
-    protected Task unmarkTask(int index) throws InvalidTaskNumberException {
+    /**
+     * Unmarks a task as done.
+     * @param index of the task to be unmarked
+     * @return the task that was unmarked
+     * @throws InvalidTaskNumberException
+     */
+    public Task unmarkTask(int index) throws InvalidTaskNumberException {
         index -= 1;
         if (index < 0 || index >= tasks.size()) {
             throw new InvalidTaskNumberException("Invalid task number");
@@ -68,7 +39,13 @@ public class TaskList {
         return task;
     }
 
-    protected Task markTask(int index) throws InvalidTaskNumberException {
+    /**
+     * Marks a task as done.
+     * @param index of the task to be marked
+     * @return the task that was marked
+     * @throws InvalidTaskNumberException
+     */
+    public Task markTask(int index) throws InvalidTaskNumberException {
         index -= 1;
         if (index < 0 || index >= tasks.size()) {
             throw new InvalidTaskNumberException("Invalid task number");
@@ -78,7 +55,13 @@ public class TaskList {
         return task;
     }
 
-    protected Task deleteTask(int index) throws InvalidTaskNumberException {
+    /**
+     * Deletes a task from the task list.
+     * @param index Index of the task to be deleted.
+     * @return Task that was deleted.
+     * @throws InvalidTaskNumberException If the index is invalid.
+     */
+    public Task deleteTask(int index) throws InvalidTaskNumberException {
         index -= 1;
         if (index < 0 || index >= tasks.size()) {
             throw new InvalidTaskNumberException("Invalid task number");

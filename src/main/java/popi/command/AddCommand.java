@@ -54,7 +54,7 @@ public class AddCommand extends Command {
             if (deadline.length < 2) {
                 throw new EmptyDescriptionException("The description and due date of a deadline cannot be empty.");
             }
-            LocalDateTime due = DateTimeUtils.parseDataTime(deadline[1]);
+            LocalDateTime due = DateTimeUtils.parseDateTime(deadline[1]);
             task = new Deadline(deadline[0], due);
             break;
         case "event":
@@ -63,8 +63,8 @@ public class AddCommand extends Command {
                 throw new EmptyDescriptionException("The description and time of an event cannot be empty.");
             }
 
-            LocalDateTime start = DateTimeUtils.parseDataTime(event[1]);
-            LocalDateTime end = DateTimeUtils.parseDataTime(event[2]);
+            LocalDateTime start = DateTimeUtils.parseDateTime(event[1]);
+            LocalDateTime end = DateTimeUtils.parseDateTime(event[2]);
             task = new Event(event[0], start, end);
             break;
         default:
@@ -74,7 +74,7 @@ public class AddCommand extends Command {
 
     @Override
     public void execute(TaskList tasks, Ui ui, TaskManager taskManager) throws PopiException {
-        tasks.publicAddTask(task);
+        tasks.addTask(task);
         taskManager.publicSaveTask(tasks);
         ui.showTaskAdded(task, tasks);
     }

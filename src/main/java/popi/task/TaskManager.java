@@ -13,8 +13,7 @@ import popi.exception.PopiException;
  * Manages the loading and saving of tasks from and to the file.
  */
 public class TaskManager {
-    private final String path = "./data/popi.txt";
-
+    private static final String PATH = "data/tasks.txt";
     /**
      * Loads tasks from the file.
      * @return Task list loaded from the file.
@@ -26,7 +25,7 @@ public class TaskManager {
 
     protected TaskList load() throws PopiException {
         TaskList tasks = new TaskList();
-        File f = new File(path);
+        File f = new File(PATH);
 
         if (!f.exists()) {
             try {
@@ -46,7 +45,7 @@ public class TaskManager {
         }
 
         try {
-            List<String> lines = Files.readAllLines(java.nio.file.Paths.get(path));
+            List<String> lines = Files.readAllLines(java.nio.file.Paths.get(PATH));
             for (String line : lines) {
                 Task t = getTask(line);
                 tasks.addTask(t);
@@ -82,7 +81,7 @@ public class TaskManager {
 
     protected void save(TaskList task) throws PopiException {
         try {
-            FileWriter writer = new FileWriter(path);
+            FileWriter writer = new FileWriter(PATH);
             for (Task t : task.getTasks()) {
                 writer.write(t.toDataString() + "\n");
             }

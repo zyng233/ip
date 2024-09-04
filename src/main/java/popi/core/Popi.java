@@ -13,7 +13,7 @@ import popi.ui.Ui;
 public class Popi {
     private TaskList list;
     private final TaskManager taskManager;
-    private final Ui ui;
+    private Ui ui;
 
     /**
      * Constructor for Popi.
@@ -27,6 +27,7 @@ public class Popi {
             ui.showError(e.getMessage());
             list = new TaskList();
         }
+        ui.showWelcome();
     }
 
     /**
@@ -47,6 +48,38 @@ public class Popi {
         }
     }
 
+    /**
+     * Sets the Ui object for the Popi program.
+     *
+     * @param ui The Ui object to be set.
+     */
+    public void setUi(Ui ui) {
+        this.ui = ui;
+    }
+
+    /**
+     * Generates a response for the user's chat message.
+     */
+    public String getResponse(String input) {
+        if (input.equals("bye")) {
+            ui.showGoodbye();
+            return ui.getResponse();
+        }
+
+        try {
+            Command command = Parser.parse(input);
+            command.execute(list, ui, taskManager);
+            return ui.getResponse();
+        } catch (PopiException e) {
+            return "Error: " + e.getMessage();
+        }
+    }
+
+    /**
+     * Main method to start the program.
+     *
+     * @param args The command line arguments.
+     */
     public static void main(String[] args) {
         new Popi().run();
     }

@@ -10,9 +10,14 @@ import popi.task.TaskList;
  */
 public class Ui {
     private final Scanner scanner;
+    private String response;
 
+    /**
+     * Constructor for the Ui.
+     */
     public Ui() {
         this.scanner = new Scanner(System.in);
+        this.response = "";
     }
 
     /**
@@ -24,29 +29,17 @@ public class Ui {
     }
 
     /**
-     * Shows the line separator.
-     */
-    public void showLine() {
-        System.out.println("____________________________________________________________");
-    }
-
-    /**
      * Shows the welcome message.
      */
     public void showWelcome() {
-        showLine();
-        System.out.println("Hello! I'm Popi");
-        System.out.println("What can I do for you?");
-        showLine();
+        setResponse("Hello! I'm Popi\nWhat can I do for you?");
     }
 
     /**
      * Shows the goodbye message.
      */
     public void showGoodbye() {
-        showLine();
-        System.out.println("Bye. Hope to see you again soon!");
-        showLine();
+        setResponse("Bye. Hope to see you again soon!");
     }
 
     /**
@@ -54,9 +47,7 @@ public class Ui {
      * @param message Error message to be shown.
      */
     public void showError(String message) {
-        showLine();
-        System.out.println(message);
-        showLine();
+        setResponse(message);
     }
 
     /**
@@ -65,11 +56,8 @@ public class Ui {
      * @param tasks List of tasks to be calculated.
      */
     public void showTaskAdded(Task task, TaskList tasks) {
-        showLine();
-        System.out.println("Got it. I've added this task:");
-        System.out.println("  " + task);
-        System.out.println("Now you have " + tasks.getTasks().size() + " tasks in the list.");
-        showLine();
+        setResponse("Got it. I've added this task:\n  " + task + "\nNow you have "
+                + tasks.getTasks().size() + " tasks in the list.");
     }
 
     /**
@@ -78,11 +66,8 @@ public class Ui {
      * @param tasks List of tasks to be calculated.
      */
     public void showTaskDeleted(Task task, TaskList tasks) {
-        showLine();
-        System.out.println("Noted. I've removed this task:");
-        System.out.println("  " + task);
-        System.out.println("Now you have " + tasks.getTasks().size() + " tasks in the list.");
-        showLine();
+        setResponse("Noted. I've removed this task:\n  " + task + "\nNow you have "
+                + tasks.getTasks().size() + " tasks in the list.");
     }
 
     /**
@@ -90,10 +75,7 @@ public class Ui {
      * @param task Task to be marked.
      */
     public void showTaskMarked(Task task) {
-        showLine();
-        System.out.println("Nice! I've marked this task as done:");
-        System.out.println("  " + task);
-        showLine();
+        setResponse("Nice! I've marked this task as done:\n  " + task);
     }
 
     /**
@@ -101,10 +83,7 @@ public class Ui {
      * @param task Task to be unmarked.
      */
     public void showTaskUnmarked(Task task) {
-        showLine();
-        System.out.println("Nice! I've marked this task as undone:");
-        System.out.println("  " + task);
-        showLine();
+        setResponse("Nice! I've unmarked this task as undone:\n  " + task);
     }
 
     /**
@@ -112,11 +91,40 @@ public class Ui {
      * @param tasks List of tasks to be shown.
      */
     public void showMatchingTasks(TaskList tasks) {
-        showLine();
-        System.out.println("Here are the matching tasks in your list:");
+        StringBuilder matchingTasks = new StringBuilder("Here are the matching tasks in your list:\n");
         for (int i = 0; i < tasks.getTasks().size(); i++) {
-            System.out.println((i + 1) + ". " + tasks.getTasks().get(i));
+            matchingTasks.append(i + 1).append(". ")
+                    .append(tasks.getTasks().get(i)).append("\n");
         }
-        showLine();
+        setResponse(matchingTasks.toString());
+    }
+
+    /**
+     * Sets the response to be shown to the user.
+     *
+     */
+    public String getResponse() {
+        return response;
+    }
+
+    /**
+     * Sets the response to be shown to the user.
+     * @param response Response to be shown to the user.
+     */
+    public void setResponse(String response) {
+        this.response = response;
+    }
+
+    /**
+     * Shows the list of tasks.
+     * @param tasks List of tasks to be shown.
+     */
+    public void showTasks(TaskList tasks) {
+        StringBuilder taskList = new StringBuilder("Here are the tasks in your list:\n");
+        for (int i = 0; i < tasks.getTasks().size(); i++) {
+            taskList.append(i + 1).append(". ")
+                    .append(tasks.getTasks().get(i)).append("\n");
+        }
+        setResponse(taskList.toString());
     }
 }

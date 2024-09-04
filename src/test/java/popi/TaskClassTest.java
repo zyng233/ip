@@ -17,7 +17,7 @@ public class TaskClassTest {
     public void testAddTask() {
         task = new Todo("read book");
         tasklist = new TaskList();
-        tasklist.publicAddTask(task);
+        tasklist.addTask(task);
         assertEquals(tasklist.getTask(1), task);
     }
 
@@ -25,8 +25,8 @@ public class TaskClassTest {
     public void testMarkAsDone() throws PopiException {
         task = new Todo("read book");
         tasklist = new TaskList();
-        tasklist.publicAddTask(task);
-        tasklist.publicMarkTask(1);
+        tasklist.addTask(task);
+        tasklist.markTask(1);
         assertEquals(tasklist.getTask(1).getStatusIcon(), "X");
     }
 
@@ -34,9 +34,9 @@ public class TaskClassTest {
     public void testMarkAsUndone() throws PopiException {
         task = new Todo("read book");
         tasklist = new TaskList();
-        tasklist.publicAddTask(task);
-        tasklist.publicMarkTask(1);
-        tasklist.publicUnmarkTask(1);
+        tasklist.addTask(task);
+        tasklist.markTask(1);
+        tasklist.unmarkTask(1);
         assertEquals(tasklist.getTask(1).getStatusIcon(), " ");
     }
 }

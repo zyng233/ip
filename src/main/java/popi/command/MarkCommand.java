@@ -37,7 +37,7 @@ public class MarkCommand extends Command {
 
     @Override
     public void execute(TaskList tasks, Ui ui, TaskManager taskManager) throws PopiException {
-        Task task = tasks.publicMarkTask(taskNumber);
+        Task task = tasks.markTask(taskNumber);
         taskManager.publicSaveTask(tasks);
         ui.showTaskMarked(task);
     }
