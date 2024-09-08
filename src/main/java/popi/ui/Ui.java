@@ -1,6 +1,7 @@
 package popi.ui;
 
 import java.util.Scanner;
+import java.util.stream.Collectors;
 
 import popi.task.Task;
 import popi.task.TaskList;
@@ -91,12 +92,10 @@ public class Ui {
      * @param tasks List of tasks to be shown.
      */
     public void showMatchingTasks(TaskList tasks) {
-        StringBuilder matchingTasks = new StringBuilder("Here are the matching tasks in your list:\n");
-        for (int i = 0; i < tasks.getTasks().size(); i++) {
-            matchingTasks.append(i + 1).append(". ")
-                    .append(tasks.getTasks().get(i)).append("\n");
-        }
-        setResponse(matchingTasks.toString());
+        String response = tasks.getTasks().stream()
+                .map(task -> tasks.getTasks().indexOf(task) + 1 + ". " + task)
+                .collect(Collectors.joining("\n", "Here are the matching tasks in your list:\n", ""));
+        setResponse(response);
     }
 
     /**
@@ -120,11 +119,9 @@ public class Ui {
      * @param tasks List of tasks to be shown.
      */
     public void showTasks(TaskList tasks) {
-        StringBuilder taskList = new StringBuilder("Here are the tasks in your list:\n");
-        for (int i = 0; i < tasks.getTasks().size(); i++) {
-            taskList.append(i + 1).append(". ")
-                    .append(tasks.getTasks().get(i)).append("\n");
-        }
-        setResponse(taskList.toString());
+        String response = tasks.getTasks().stream()
+                .map(task -> tasks.getTasks().indexOf(task) + 1 + ". " + task)
+                .collect(Collectors.joining("\n", "Here are tasks in your list:\n", ""));
+        setResponse(response);
     }
 }
