@@ -32,7 +32,8 @@ public class TaskList {
      * @throws InvalidTaskNumberException
      */
     public Task unmarkTask(int index) throws InvalidTaskNumberException {
-        validateTaskIndex(index - 1);
+        index -= 1;
+        validateTaskIndex(index);
         Task task = tasks.get(index);
         task.markAsUndone();
         return task;
@@ -46,7 +47,8 @@ public class TaskList {
      * @throws InvalidTaskNumberException
      */
     public Task markTask(int index) throws InvalidTaskNumberException {
-        validateTaskIndex(index - 1);
+        index -= 1;
+        validateTaskIndex(index);
         Task task = tasks.get(index);
         task.markAsDone();
         return task;
@@ -60,7 +62,8 @@ public class TaskList {
      * @throws InvalidTaskNumberException If the index is invalid.
      */
     public Task deleteTask(int index) throws InvalidTaskNumberException {
-        validateTaskIndex(index - 1);
+        index -= 1;
+        validateTaskIndex(index);
         Task task = tasks.get(index);
         tasks.remove(index);
         return task;
@@ -82,8 +85,9 @@ public class TaskList {
      * @return Task at the specified index.
      */
     public Task getTask(int index) throws InvalidTaskNumberException {
-        validateTaskIndex(index - 1);
-        return tasks.get(index - 1);
+        index -= 1;
+        validateTaskIndex(index);
+        return tasks.get(index);
     }
 
     /**
@@ -111,7 +115,7 @@ public class TaskList {
     }
 
     private void validateTaskIndex(int index) throws InvalidTaskNumberException {
-        if (index < 1 || index > tasks.size()) {
+        if (index < 0 || index >= tasks.size()) {
             throw new InvalidTaskNumberException("Invalid task number");
         }
     }

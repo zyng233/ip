@@ -2,6 +2,7 @@ package popi.ui;
 
 import java.util.Scanner;
 import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 
 import popi.task.Task;
 import popi.task.TaskList;
@@ -140,9 +141,25 @@ public class Ui {
     }
 
     private String buildTaskList(String header, TaskList tasks) {
-        String response = IntStream.range(0, tasks.getTasks().size())
+        return IntStream.range(0, tasks.getTasks().size())
             .mapToObj(i -> (i + 1) + ". " + tasks.getTasks().get(i))
             .collect(Collectors.joining("\n", header + "\n", ""));
-        return response;
+    }
+
+    /**
+     * Shows the help message.
+     */
+    public void showHelp() {
+        setResponse("Here are the list of commands you can use:\n"
+                + "1. todo <description> - Adds a todo task.\n"
+                + "2. deadline <description> /by <date> <time> - Adds a deadline task.\n"
+                + "3. event <description> /from <date> <time> /to <date> <time> - Adds an event task.\n"
+                + "4. list - Lists all the tasks in the list.\n"
+                + "5. mark <task number> - Marks the task as done.\n"
+                + "6. unmark <task number> - Unmarks the task.\n"
+                + "7. delete <task number> - Deletes the task from the list.\n"
+                + "8. find <keyword> - Finds all the tasks with the keyword.\n"
+                + "9. help - Shows the list of commands.\n"
+                + "10. bye - Exits the program.");
     }
 }
