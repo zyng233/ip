@@ -41,6 +41,8 @@ public class AddCommand extends Command {
         }
         String type = parts[0];
         String description = parts[1];
+        assert !type.isBlank() : "Task type cannot be empty";
+        assert !description.isBlank() : "Task description cannot be empty";
 
         switch (type) {
         case "todo":
@@ -74,6 +76,7 @@ public class AddCommand extends Command {
 
     @Override
     public void execute(TaskList tasks, Ui ui, TaskManager taskManager) throws PopiException {
+        assert task != null : "Task should be initialized in the constructor";
         tasks.addTask(task);
         taskManager.publicSaveTask(tasks);
         ui.showTaskAdded(task, tasks);

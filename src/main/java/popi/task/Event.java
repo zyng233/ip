@@ -8,8 +8,8 @@ import popi.utils.DateTimeUtils;
  * Represents an event task.
  */
 public class Event extends Task {
-    protected LocalDateTime start;
-    protected LocalDateTime end;
+    private LocalDateTime start;
+    private LocalDateTime end;
 
     /**
      * Constructor for Event.

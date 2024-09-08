@@ -8,7 +8,7 @@ import popi.utils.DateTimeUtils;
  * Represents a deadline task.
  */
 public class Deadline extends Task {
-    protected LocalDateTime end;
+    private LocalDateTime end;
 
     /**
      * Constructor for Deadline.
