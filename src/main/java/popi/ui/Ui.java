@@ -1,6 +1,7 @@
 package popi.ui;
 
 import java.util.Scanner;
+import java.util.stream.Collectors;
 
 import popi.task.Task;
 import popi.task.TaskList;
@@ -139,11 +140,9 @@ public class Ui {
     }
 
     private String buildTaskList(String header, TaskList tasks) {
-        StringBuilder taskList = new StringBuilder(header + "\n");
-        for (int i = 0; i < tasks.getTasks().size(); i++) {
-            taskList.append(i + 1).append(". ")
-                    .append(tasks.getTasks().get(i)).append("\n");
-        }
-        return taskList.toString();
+        String response = IntStream.range(0, tasks.getTasks().size())
+            .mapToObj(i -> (i + 1) + ". " + tasks.getTasks().get(i))
+            .collect(Collectors.joining("\n", header + "\n", ""));
+        return response;
     }
 }
