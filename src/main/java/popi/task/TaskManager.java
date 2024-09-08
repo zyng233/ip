@@ -33,14 +33,10 @@ public class TaskManager {
         if (!f.exists()) {
             try {
                 boolean directoryCreated = f.getParentFile().mkdirs();
-                if (!directoryCreated) {
-                    throw new IOException("Error creating directory");
-                }
+                assert directoryCreated : "Failed to create directory: " + f.getParentFile();
 
                 boolean fileCreated = f.createNewFile();
-                if (!fileCreated) {
-                    throw new IOException("Error creating file");
-                }
+                assert fileCreated : "Failed to create file: " + PATH;
             } catch (IOException e) {
                 throw new PopiException("Error creating file");
             }
@@ -84,6 +80,7 @@ public class TaskManager {
         try {
             FileWriter writer = new FileWriter(PATH);
             for (Task t : task.getTasks()) {
+                assert t != null : "Task in the list is null";
                 writer.write(t.toDataString() + "\n");
             }
             writer.close();
