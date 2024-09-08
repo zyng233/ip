@@ -30,14 +30,10 @@ public class TaskManager {
         if (!f.exists()) {
             try {
                 boolean directoryCreated = f.getParentFile().mkdirs();
-                if (!directoryCreated) {
-                    throw new IOException("Error creating directory");
-                }
+                assert directoryCreated : "Failed to create directory: " + f.getParentFile();
 
                 boolean fileCreated = f.createNewFile();
-                if (!fileCreated) {
-                    throw new IOException("Error creating file");
-                }
+                assert fileCreated : "Failed to create file: " + PATH;
             } catch (IOException e) {
                 throw new PopiException("Error creating file");
             }
@@ -47,6 +43,7 @@ public class TaskManager {
         try {
             List<String> lines = Files.readAllLines(java.nio.file.Paths.get(PATH));
             for (String line : lines) {
+                assert line != null && !line.isEmpty() : "Line from file is null or empty: " + line;
                 Task t = getTask(line);
                 tasks.addTask(t);
             }
@@ -83,6 +80,7 @@ public class TaskManager {
         try {
             FileWriter writer = new FileWriter(PATH);
             for (Task t : task.getTasks()) {
+                assert t != null : "Task in the list is null";
                 writer.write(t.toDataString() + "\n");
             }
             writer.close();
