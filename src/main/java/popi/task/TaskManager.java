@@ -13,9 +13,11 @@ import popi.exception.PopiException;
  * Manages the loading and saving of tasks from and to the file.
  */
 public class TaskManager {
-    private static final String PATH = "data/tasks.txt";
+    private static final String PATH = "data/popi.txt";
+
     /**
      * Loads tasks from the file.
+     *
      * @return Task list loaded from the file.
      * @throws PopiException If there is an error loading the tasks.
      */
@@ -27,6 +29,7 @@ public class TaskManager {
         TaskList tasks = new TaskList();
         File f = new File(PATH);
 
+        // Create file if it does not exist
         if (!f.exists()) {
             try {
                 boolean directoryCreated = f.getParentFile().mkdirs();
@@ -44,10 +47,11 @@ public class TaskManager {
             return tasks;
         }
 
+        // Load tasks from file
         try {
             List<String> lines = Files.readAllLines(java.nio.file.Paths.get(PATH));
             for (String line : lines) {
-                Task t = getTask(line);
+                Task t = parseTask(line);
                 tasks.addTask(t);
             }
         } catch (IOException e) {
@@ -56,7 +60,7 @@ public class TaskManager {
         return tasks;
     }
 
-    private static Task getTask(String line) throws PopiException {
+    private static Task parseTask(String line) throws PopiException {
         String[] parts = line.split(" \\| ");
         Task t = switch (parts[0]) {
         case "T" -> new Todo(parts[2]);
@@ -71,15 +75,12 @@ public class TaskManager {
     }
 
     /**
-     * Saves tasks to the file.
-     * @param tasks Task list to be saved.
+     * Saves the tasks to the file.
+     *
+     * @param task The list of tasks to be saved.
      * @throws PopiException If there is an error saving the tasks.
      */
-    public void publicSaveTask(TaskList tasks) throws PopiException {
-        save(tasks);
-    }
-
-    protected void save(TaskList task) throws PopiException {
+    public void save(TaskList task) throws PopiException {
         try {
             FileWriter writer = new FileWriter(PATH);
             for (Task t : task.getTasks()) {

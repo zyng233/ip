@@ -21,20 +21,20 @@ public class FindCommand extends Command {
     public FindCommand(String command) throws EmptyDescriptionException {
         String[] parts = command.split(" ", 2);
 
-        if (parts.length < 2) {
+        if (parts.length < 2 || parts[1].trim().isEmpty()) {
             throw new EmptyDescriptionException("The keyword cannot be empty.");
         }
 
-        this.keyword = parts[1];
+        this.keyword = parts[1].trim();
     }
 
     @Override
     public void execute(TaskList tasks, Ui ui, TaskManager taskManager) throws PopiException {
         TaskList matchingTasks = tasks.findTasks(keyword);
-
         if (matchingTasks.isEmpty()) {
-            throw new PopiException("No matching tasks found.");
+            ui.showError("No matching tasks found.");
+        } else {
+            ui.showMatchingTasks(matchingTasks);
         }
-        ui.showMatchingTasks(matchingTasks);
     }
 }

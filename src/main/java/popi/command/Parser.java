@@ -15,10 +15,14 @@ public class Parser {
      * @throws PopiException If the input is invalid.
      */
     public static Command parse(String input) throws PopiException {
+        if (input == null || input.trim().isEmpty()) {
+            throw new UnknownCommandException();
+        }
+
         String[] parts = input.split(" ", 2);
         String command = parts[0];
 
-        return switch (command) {
+        return switch (command.toLowerCase()) {
         case "bye" -> new ExitCommand();
         case "list" -> new ListCommand();
         case "mark" -> new MarkCommand(input);
