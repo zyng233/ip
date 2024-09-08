@@ -36,7 +36,7 @@ public class Event extends Task {
 
     @Override
     public String toDataString() {
-        return getType() + " | " + (isDone ? "1" : "0") + " | " + description
+        return getType() + " | " + (isDone() ? "1" : "0") + " | " + getDescription()
                 + " | " + start + " | " + end;
     }
 }

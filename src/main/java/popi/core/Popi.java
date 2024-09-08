@@ -27,7 +27,6 @@ public class Popi {
             ui.showError(e.getMessage());
             list = new TaskList();
         }
-        ui.showWelcome();
     }
 
     /**
@@ -59,9 +58,12 @@ public class Popi {
 
     /**
      * Generates a response for the user's chat message.
+     *
+     * @param input The user's chat message.
+     * @return The response to the user's chat message.
      */
     public String getResponse(String input) {
-        if (input.equals("bye")) {
+        if (input.equalsIgnoreCase("bye")) {
             ui.showGoodbye();
             return ui.getResponse();
         }

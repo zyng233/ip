@@ -22,6 +22,7 @@ public class Ui {
 
     /**
      * Reads the next line of input from the user.
+     *
      * @return The next line of input from the user.
      */
     public String readCommand() {
@@ -44,6 +45,7 @@ public class Ui {
 
     /**
      * Shows the error message.
+     *
      * @param message Error message to be shown.
      */
     public void showError(String message) {
@@ -51,57 +53,68 @@ public class Ui {
     }
 
     /**
+     * Shows the task message.
+     *
+     * @param action Action to be shown.
+     * @param task Task to be shown.
+     * @param tasks List of tasks to be calculated.
+     */
+    public void showTaskMessage(String action, Task task, TaskList tasks) {
+        setResponse(String.format("Got it. I've %s this task:\n  %s\nNow you have %d tasks in the list.",
+                action, task, tasks.getTasks().size()));
+    }
+
+    /**
      * Shows the added task and number of tasks in the task list.
+     *
      * @param task Task added to be shown.
      * @param tasks List of tasks to be calculated.
      */
     public void showTaskAdded(Task task, TaskList tasks) {
-        setResponse("Got it. I've added this task:\n  " + task + "\nNow you have "
-                + tasks.getTasks().size() + " tasks in the list.");
+        showTaskMessage("added", task, tasks);
     }
 
     /**
      * Shows the deleted task and number of tasks in the task list.
+     *
      * @param task Task deleted to be shown.
      * @param tasks List of tasks to be calculated.
      */
     public void showTaskDeleted(Task task, TaskList tasks) {
-        setResponse("Noted. I've removed this task:\n  " + task + "\nNow you have "
-                + tasks.getTasks().size() + " tasks in the list.");
+        showTaskMessage("removed", task, tasks);
     }
 
     /**
      * Shows the new marked task.
+     *
      * @param task Task to be marked.
      */
     public void showTaskMarked(Task task) {
-        setResponse("Nice! I've marked this task as done:\n  " + task);
+        setResponse(String.format("Nice! I've marked this task as done:\n  %s", task));
     }
 
     /**
      * Shows the new unmarked task.
+     *
      * @param task Task to be unmarked.
      */
     public void showTaskUnmarked(Task task) {
-        setResponse("Nice! I've unmarked this task as undone:\n  " + task);
+        setResponse(String.format("Nice! I've unmarked this task as undone:\n  %s", task));
     }
 
     /**
      * Shows the list of tasks found.
+     *
      * @param tasks List of tasks to be shown.
      */
     public void showMatchingTasks(TaskList tasks) {
-        StringBuilder matchingTasks = new StringBuilder("Here are the matching tasks in your list:\n");
-        for (int i = 0; i < tasks.getTasks().size(); i++) {
-            matchingTasks.append(i + 1).append(". ")
-                    .append(tasks.getTasks().get(i)).append("\n");
-        }
-        setResponse(matchingTasks.toString());
+        setResponse(buildTaskList("Here are the matching tasks in your list:", tasks));
     }
 
     /**
      * Sets the response to be shown to the user.
      *
+     * @return Response to be shown to the user.
      */
     public String getResponse() {
         return response;
@@ -109,22 +122,28 @@ public class Ui {
 
     /**
      * Sets the response to be shown to the user.
+     *
      * @param response Response to be shown to the user.
      */
-    public void setResponse(String response) {
+    private void setResponse(String response) {
         this.response = response;
     }
 
     /**
      * Shows the list of tasks.
+     *
      * @param tasks List of tasks to be shown.
      */
     public void showTasks(TaskList tasks) {
-        StringBuilder taskList = new StringBuilder("Here are the tasks in your list:\n");
+        setResponse(buildTaskList("Here are the tasks in your list:", tasks));
+    }
+
+    private String buildTaskList(String header, TaskList tasks) {
+        StringBuilder taskList = new StringBuilder(header + "\n");
         for (int i = 0; i < tasks.getTasks().size(); i++) {
             taskList.append(i + 1).append(". ")
                     .append(tasks.getTasks().get(i)).append("\n");
         }
-        setResponse(taskList.toString());
+        return taskList.toString();
     }
 }

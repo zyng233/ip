@@ -4,7 +4,6 @@ package popi.task;
  * Represents a todo task.
  */
 public class Todo extends Task {
-
     /**
      * Constructor for Todo.
      * @param description Description of the todo.
