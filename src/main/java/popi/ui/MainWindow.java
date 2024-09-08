@@ -26,12 +26,11 @@ public class MainWindow extends Stage {
     private TextField userInput;
     private Popi popi;
     private Ui ui;
-    private final Image userImage = loadImage("/images/dinosaur.jpg");
-    private final Image popiImage = loadImage("/images/popi.png");
-
+    private final Image USER_IMAGE = loadImage("/images/dinosaur.jpg");
+    private final Image POPI_IMAGE = loadImage("/images/popi.png");
+    private static final String CSS_PATH = "/view/style.css";
     /**
      * Constructor for MainWindow.
-     *
      */
     public MainWindow() {
         try {
@@ -40,8 +39,8 @@ public class MainWindow extends Stage {
 
             // Setup the scene and stage
             Scene scene = new Scene(root);
-            String css = getClass().getResource("/view/style.css") != null
-                    ? getClass().getResource("/view/style.css").toExternalForm()
+            String css = getClass().getResource(CSS_PATH) != null
+                    ? getClass().getResource(CSS_PATH).toExternalForm()
                     : "";
             scene.getStylesheets().add(css);
             setScene(scene);
@@ -63,7 +62,7 @@ public class MainWindow extends Stage {
         ui.showWelcome();
         String greeting = ui.getResponse();
         dialogContainer.getChildren().add(
-                DialogBox.getPopiDialog(greeting, popiImage)
+                DialogBox.getPopiDialog(greeting, POPI_IMAGE)
         );
         scrollPane.vvalueProperty().bind(dialogContainer.heightProperty());
     }
@@ -88,8 +87,8 @@ public class MainWindow extends Stage {
         String input = userInput.getText();
         String response = popi.getResponse(input);
         dialogContainer.getChildren().addAll(
-                DialogBox.getUserDialog(input, userImage),
-                DialogBox.getPopiDialog(response, popiImage)
+                DialogBox.getUserDialog(input, USER_IMAGE),
+                DialogBox.getPopiDialog(response, POPI_IMAGE)
         );
         userInput.clear();
     }

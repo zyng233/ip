@@ -24,7 +24,7 @@ public class UnmarkCommand extends Command {
     public UnmarkCommand(String command) throws EmptyDescriptionException, InvalidTaskNumberException {
         String[] parts = command.split(" ");
 
-        if (parts.length < 2) {
+        if (parts.length < 2 || parts[1].trim().isEmpty()) {
             throw new EmptyDescriptionException("The task number cannot be empty.");
         }
 
@@ -38,7 +38,7 @@ public class UnmarkCommand extends Command {
     @Override
     public void execute(TaskList tasks, Ui ui, TaskManager taskManager) throws PopiException {
         Task task = tasks.unmarkTask(taskNumber);
-        taskManager.publicSaveTask(tasks);
+        taskManager.save(tasks);
         ui.showTaskUnmarked(task);
     }
 }

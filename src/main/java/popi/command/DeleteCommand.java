@@ -38,7 +38,7 @@ public class DeleteCommand extends Command {
     @Override
     public void execute(TaskList tasks, Ui ui, TaskManager taskManager) throws PopiException {
         Task task = tasks.deleteTask(taskNumber);
-        taskManager.publicSaveTask(tasks);
+        taskManager.save(tasks);
         ui.showTaskDeleted(task, tasks);
     }
 }

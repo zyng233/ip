@@ -39,43 +39,60 @@ public class AddCommand extends Command {
         if (parts.length < 2) {
             throw new EmptyDescriptionException("The description of a task cannot be empty.");
         }
-        String type = parts[0];
+        String taskType = parts[0];
         String description = parts[1];
+        assert !type.isBlank() : "Task type cannot be empty";
+        assert !description.isBlank() : "Task description cannot be empty";
 
-        switch (type) {
+        switch (taskType) {
         case "todo":
-            if (description.isBlank()) {
-                throw new EmptyDescriptionException("The description of a todo cannot be empty.");
-            }
-            task = new Todo(description);
+            task = createTodoTask(description);
             break;
         case "deadline":
-            String[] deadline = description.split(" /by ", 2);
-            if (deadline.length < 2) {
-                throw new EmptyDescriptionException("The description and due date of a deadline cannot be empty.");
-            }
-            LocalDateTime due = DateTimeUtils.parseDateTime(deadline[1]);
-            task = new Deadline(deadline[0], due);
+            task = createDeadlineTask(description);
             break;
         case "event":
-            String[] event = description.split(" /from | /to ");
-            if (event.length < 3) {
-                throw new EmptyDescriptionException("The description and time of an event cannot be empty.");
-            }
-
-            LocalDateTime start = DateTimeUtils.parseDateTime(event[1]);
-            LocalDateTime end = DateTimeUtils.parseDateTime(event[2]);
-            task = new Event(event[0], start, end);
+            task = createEventTask(description);
             break;
         default:
             throw new UnknownCommandException();
         }
     }
 
+    private Task createTodoTask(final String description) throws EmptyDescriptionException {
+        if (description.isBlank()) {
+            throw new EmptyDescriptionException("The description of the todo task cannot be empty.");
+        }
+        return new Todo(description);
+    }
+
+    private Task createDeadlineTask(final String description) throws EmptyDescriptionException,
+            InvalidTimeFormatException {
+        String[] deadline = description.split(" /by ", 2);
+        if (deadline.length < 2) {
+            throw new EmptyDescriptionException("The description and due date of a deadline cannot be empty.");
+        }
+        LocalDateTime due = DateTimeUtils.parseDateTime(deadline[1]);
+        return new Deadline(deadline[0], due);
+    }
+
+    private Task createEventTask(final String description) throws EmptyDescriptionException,
+            InvalidTimeFormatException {
+        String[] event = description.split(" /from | /to ");
+        if (event.length < 3) {
+            throw new EmptyDescriptionException("The description and time of an event cannot be empty.");
+        }
+
+        LocalDateTime start = DateTimeUtils.parseDateTime(event[1]);
+        LocalDateTime end = DateTimeUtils.parseDateTime(event[2]);
+        return new Event(event[0], start, end);
+    }
+
     @Override
     public void execute(TaskList tasks, Ui ui, TaskManager taskManager) throws PopiException {
+        assert task != null : "Task should be initialized in the constructor";
         tasks.addTask(task);
-        taskManager.publicSaveTask(tasks);
+        taskManager.save(tasks);
         ui.showTaskAdded(task, tasks);
     }
 }

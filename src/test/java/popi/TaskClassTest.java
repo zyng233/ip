@@ -4,6 +4,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import org.junit.jupiter.api.Test;
 
+import popi.exception.InvalidTaskNumberException;
 import popi.exception.PopiException;
 import popi.task.Task;
 import popi.task.TaskList;
@@ -14,7 +15,7 @@ public class TaskClassTest {
     private TaskList tasklist;
 
     @Test
-    public void testAddTask() {
+    public void testAddTask() throws InvalidTaskNumberException {
         task = new Todo("read book");
         tasklist = new TaskList();
         tasklist.addTask(task);

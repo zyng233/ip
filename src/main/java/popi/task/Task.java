@@ -6,9 +6,9 @@ import java.time.LocalDateTime;
  * Represents a task.
  */
 public abstract class Task {
-    protected String description;
-    protected boolean isDone;
-    protected LocalDateTime time;
+    private String description;
+    private boolean isDone;
+    private LocalDateTime time;
 
     /**
      * Constructor for Task.
@@ -26,10 +26,6 @@ public abstract class Task {
         return "[" + getStatusIcon() + "] " + this.description;
     }
 
-    /**
-     * Returns the status icon of the task.
-     * @return Status icon of the task.
-     */
     public String getStatusIcon() {
         return (isDone ? "X" : " ");
     }
@@ -44,6 +40,10 @@ public abstract class Task {
 
     protected void markAsUndone() {
         this.isDone = false;
+    }
+
+    public boolean isDone() {
+        return this.isDone;
     }
 
     protected abstract String getType();
