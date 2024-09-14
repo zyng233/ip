@@ -12,7 +12,7 @@ import popi.task.Todo;
 
 public class TaskClassTest {
     private Task task;
-    private TaskList tasklist;
+    private TaskList tasklist = new TaskList();
 
     @Test
     public void testAddTask() throws InvalidTaskNumberException {

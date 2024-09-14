@@ -41,7 +41,7 @@ public class AddCommand extends Command {
         }
         String taskType = parts[0];
         String description = parts[1];
-        assert !type.isBlank() : "Task type cannot be empty";
+        assert !taskType.isBlank() : "Task type cannot be empty";
         assert !description.isBlank() : "Task description cannot be empty";
 
         switch (taskType) {

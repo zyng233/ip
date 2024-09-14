@@ -2,6 +2,7 @@ package popi.ui;
 
 import java.util.Scanner;
 import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 
 import popi.task.Task;
 import popi.task.TaskList;
@@ -34,14 +35,15 @@ public class Ui {
      * Shows the welcome message.
      */
     public void showWelcome() {
-        setResponse("Hello! I'm Popi\nWhat can I do for you?");
+        setResponse("Welcome! I'm Popi and I'm here to help you to manage your tasks.\n" +
+                "If you need guidance, just type 'help' to see a list of commands!");
     }
 
     /**
      * Shows the goodbye message.
      */
     public void showGoodbye() {
-        setResponse("Bye. Hope to see you again soon!");
+        setResponse("Goodbye! May your day be as bright and joyful as a sunny river!");
     }
 
     /**
@@ -61,8 +63,8 @@ public class Ui {
      * @param tasks List of tasks to be calculated.
      */
     public void showTaskMessage(String action, Task task, TaskList tasks) {
-        setResponse(String.format("Got it. I've %s this task:\n  %s\nNow you have %d tasks in the list.",
-                action, task, tasks.getTasks().size()));
+        setResponse(String.format("Lookie here! I've %s this task:\n  %s\nThere is now %d task(s) in the list.",
+                action, task, tasks.getAllTasks().size()));
     }
 
     /**
@@ -91,7 +93,8 @@ public class Ui {
      * @param task Task to be marked.
      */
     public void showTaskMarked(Task task) {
-        setResponse(String.format("Nice! I've marked this task as done:\n  %s", task));
+        setResponse(String.format("Oooh, look at you go! We just marked this task as DONE! " +
+                "You're amazing!\n  %s", task));
     }
 
     /**
@@ -100,7 +103,8 @@ public class Ui {
      * @param task Task to be unmarked.
      */
     public void showTaskUnmarked(Task task) {
-        setResponse(String.format("Nice! I've unmarked this task as undone:\n  %s", task));
+        setResponse(String.format("Aww, it's okay, no worries! We'll unmark it for now. " +
+                "Just take your time!\n  %s", task));
     }
 
     /**
@@ -109,7 +113,7 @@ public class Ui {
      * @param tasks List of tasks to be shown.
      */
     public void showMatchingTasks(TaskList tasks) {
-        setResponse(buildTaskList("Here are the matching tasks in your list:", tasks));
+        setResponse(buildTaskList("Sniff sniff... Aha! I found it! This task is a perfect match!", tasks));
     }
 
     /**
@@ -136,13 +140,29 @@ public class Ui {
      * @param tasks List of tasks to be shown.
      */
     public void showTasks(TaskList tasks) {
-        setResponse(buildTaskList("Here are the tasks in your list:", tasks));
+        setResponse(buildTaskList("Look at all these tasks! I've got them all listed out for you!", tasks));
     }
 
     private String buildTaskList(String header, TaskList tasks) {
-        String response = IntStream.range(0, tasks.getTasks().size())
-            .mapToObj(i -> (i + 1) + ". " + tasks.getTasks().get(i))
+        return IntStream.range(0, tasks.getAllTasks().size())
+            .mapToObj(i -> (i + 1) + ". " + tasks.getAllTasks().get(i))
             .collect(Collectors.joining("\n", header + "\n", ""));
-        return response;
+    }
+
+    /**
+     * Shows the help message.
+     */
+    public void showHelp() {
+        setResponse("Otterly excited to help! Here are the commands you can use:\n\n"
+                + "1. todo <description> - Add a todo task!\n"
+                + "2. deadline <description> /by <date> <time> - Add a task with a deadline!\n"
+                + "3. event <description> /from <date> <time> /to <date> <time> - Add an event with a start and end time!\n"
+                + "4. list - I'll show you all your tasks!\n"
+                + "5. mark <task number> - Yay! Mark a task as done!\n"
+                + "6. unmark <task number> - Oops! Unmark a task if it's not done yet!\n"
+                + "7. delete <task number> - Remove a task from your list. Bye-bye task!\n"
+                + "8. find <keyword> - Find tasks that match a keyword!\n"
+                + "9. help - I'll show this list again whenever you need it!\n"
+                + "10. bye - Say goodbye to me, and I'll wave my paw as you leave!");
     }
 }

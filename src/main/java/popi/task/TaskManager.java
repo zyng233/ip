@@ -79,7 +79,7 @@ public class TaskManager {
     public void save(TaskList task) throws PopiException {
         try {
             FileWriter writer = new FileWriter(PATH);
-            for (Task t : task.getTasks()) {
+            for (Task t : task.getAllTasks()) {
                 assert t != null : "Task in the list is null";
                 writer.write(t.toDataString() + "\n");
             }

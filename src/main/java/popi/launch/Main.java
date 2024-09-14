@@ -14,10 +14,11 @@ import popi.ui.MainWindow;
  * A GUI for Popi using FXML.
  */
 public class Main extends Application {
-
+    private static final String CSS_PATH = "/view/style.css";
     @Override
     public void start(Stage stage) {
         Popi popi = new Popi();
+
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/MainWindow.fxml"));
             Parent root = loader.load();
@@ -26,14 +27,14 @@ public class Main extends Application {
             controller.setPopi(popi);
 
             Scene scene = new Scene(root);
-            String css = getClass().getResource("/view/style.css") != null
-                    ? getClass().getResource("/view/style.css").toExternalForm()
+            String css = getClass().getResource(CSS_PATH) != null
+                    ? getClass().getResource(CSS_PATH).toExternalForm()
                     : "";
             scene.getStylesheets().add(css);
 
             stage.setScene(scene);
             stage.setTitle("Popi");
-            stage.setResizable(false);
+            stage.setResizable(true);
             stage.setMinHeight(600.0);
             stage.setMinWidth(400.0);
             stage.show();

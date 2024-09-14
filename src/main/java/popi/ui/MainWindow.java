@@ -29,28 +29,11 @@ public class MainWindow extends Stage {
     private final Image USER_IMAGE = loadImage("/images/dinosaur.jpg");
     private final Image POPI_IMAGE = loadImage("/images/popi.png");
     private static final String CSS_PATH = "/view/style.css";
+
     /**
      * Constructor for MainWindow.
      */
     public MainWindow() {
-        try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/MainWindow.fxml"));
-            AnchorPane root = loader.load();
-
-            // Setup the scene and stage
-            Scene scene = new Scene(root);
-            String css = getClass().getResource(CSS_PATH) != null
-                    ? getClass().getResource(CSS_PATH).toExternalForm()
-                    : "";
-            scene.getStylesheets().add(css);
-            setScene(scene);
-            setTitle("Popi");
-            setResizable(false);
-            setMinHeight(600.0);
-            setMinWidth(400.0);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
     }
 
     /**

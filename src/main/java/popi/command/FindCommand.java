@@ -2,6 +2,7 @@ package popi.command;
 
 import popi.exception.EmptyDescriptionException;
 import popi.exception.PopiException;
+import popi.exception.TaskNotFoundException;
 import popi.task.TaskList;
 import popi.task.TaskManager;
 import popi.ui.Ui;
@@ -32,7 +33,8 @@ public class FindCommand extends Command {
     public void execute(TaskList tasks, Ui ui, TaskManager taskManager) throws PopiException {
         TaskList matchingTasks = tasks.findTasks(keyword);
         if (matchingTasks.isEmpty()) {
-            ui.showError("No matching tasks found.");
+            throw new TaskNotFoundException("Aww, I couldn't find anything that matches. " +
+                    "Maybe try checking again? Or let me know what else I can search for!");
         } else {
             ui.showMatchingTasks(matchingTasks);
         }
