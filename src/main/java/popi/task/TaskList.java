@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import popi.exception.InvalidTaskNumberException;
+import popi.exception.TaskNotFoundException;
 
 /**
  * Represents a list of tasks.
@@ -25,14 +26,15 @@ public class TaskList {
     }
 
     /**
-     * Unmark a task as done.
+     * Marks a task as undone.
      *
      * @param index of the task to be unmarked
      * @return the task that was unmarked
      * @throws InvalidTaskNumberException
      */
     public Task unmarkTask(int index) throws InvalidTaskNumberException {
-        validateTaskIndex(index - 1);
+        index--;
+        validateTaskIndex(index);
         Task task = tasks.get(index);
         task.markAsUndone();
         return task;
@@ -46,8 +48,9 @@ public class TaskList {
      * @throws InvalidTaskNumberException
      */
     public Task markTask(int index) throws InvalidTaskNumberException {
-        validateTaskIndex(index - 1);
-        Task task = tasks.get(index);
+        index--;
+        validateTaskIndex(index);
+        Task task = tasks.get(index );
         task.markAsDone();
         return task;
     }
@@ -60,7 +63,8 @@ public class TaskList {
      * @throws InvalidTaskNumberException If the index is invalid.
      */
     public Task deleteTask(int index) throws InvalidTaskNumberException {
-        validateTaskIndex(index - 1);
+        index--;
+        validateTaskIndex(index);
         Task task = tasks.get(index);
         tasks.remove(index);
         return task;
@@ -71,7 +75,7 @@ public class TaskList {
      *
      * @return Number of tasks in the task list.
      */
-    public List<Task> getTasks() {
+    public List<Task> getAllTasks() {
         return tasks;
     }
 
@@ -82,8 +86,9 @@ public class TaskList {
      * @return Task at the specified index.
      */
     public Task getTask(int index) throws InvalidTaskNumberException {
-        validateTaskIndex(index - 1);
-        return tasks.get(index - 1);
+        index--;
+        validateTaskIndex(index);
+        return tasks.get(index);
     }
 
     /**
@@ -102,16 +107,16 @@ public class TaskList {
     }
 
     /**
-     * Check if the task list is empty.
+     * Determine whether the task list is empty.
      *
-     * @return True if the task list is empty.
+     * @return {@code true} if the task list contains no tasks; {@code false} otherwise.
      */
     public boolean isEmpty() {
         return tasks.isEmpty();
     }
 
     private void validateTaskIndex(int index) throws InvalidTaskNumberException {
-        if (index < 1 || index > tasks.size()) {
+        if (index < 0 || index >= tasks.size()) {
             throw new InvalidTaskNumberException("Invalid task number");
         }
     }

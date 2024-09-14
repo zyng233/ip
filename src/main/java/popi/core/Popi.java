@@ -78,9 +78,10 @@ public class Popi {
     }
 
     /**
-     * Main method to start the program.
+     * The entry point of the application.
+     * Initializes and runs the main program logic.
      *
-     * @param args The command line arguments.
+     * @param args The command line arguments passed to the program.
      */
     public static void main(String[] args) {
         new Popi().run();

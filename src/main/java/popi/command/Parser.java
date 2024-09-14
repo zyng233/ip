@@ -30,6 +30,7 @@ public class Parser {
         case "delete" -> new DeleteCommand(input);
         case "todo", "deadline", "event" -> new AddCommand(input);
         case "find" -> new FindCommand(input);
+        case "help" -> new HelpCommand();
         default -> throw new UnknownCommandException();
         };
     }
