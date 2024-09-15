@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import popi.exception.InvalidTaskNumberException;
-import popi.exception.TaskNotFoundException;
 
 /**
  * Represents a list of tasks.
@@ -50,7 +49,7 @@ public class TaskList {
     public Task markTask(int index) throws InvalidTaskNumberException {
         index--;
         validateTaskIndex(index);
-        Task task = tasks.get(index );
+        Task task = tasks.get(index);
         task.markAsDone();
         return task;
     }

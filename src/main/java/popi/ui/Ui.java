@@ -35,8 +35,8 @@ public class Ui {
      * Shows the welcome message.
      */
     public void showWelcome() {
-        setResponse("Welcome! I'm Popi and I'm here to help you to manage your tasks.\n" +
-                "If you need guidance, just type 'help' to see a list of commands!");
+        setResponse("Welcome! I'm Popi and I'm here to help you to manage your tasks.\n"
+                + "If you need guidance, just type 'help' to see a list of commands!");
     }
 
     /**
@@ -93,8 +93,8 @@ public class Ui {
      * @param task Task to be marked.
      */
     public void showTaskMarked(Task task) {
-        setResponse(String.format("Oooh, look at you go! We just marked this task as DONE! " +
-                "You're amazing!\n  %s", task));
+        setResponse(String.format("Oooh, look at you go! We just marked this task as DONE! "
+                + "You're amazing!\n  %s", task));
     }
 
     /**
@@ -103,8 +103,8 @@ public class Ui {
      * @param task Task to be unmarked.
      */
     public void showTaskUnmarked(Task task) {
-        setResponse(String.format("Aww, it's okay, no worries! We'll unmark it for now. " +
-                "Just take your time!\n  %s", task));
+        setResponse(String.format("Aww, it's okay, no worries! We'll unmark it for now. "
+                + "Just take your time!\n  %s", task));
     }
 
     /**
@@ -156,7 +156,8 @@ public class Ui {
         setResponse("Otterly excited to help! Here are the commands you can use:\n\n"
                 + "1. todo <description> - Add a todo task!\n"
                 + "2. deadline <description> /by <date> <time> - Add a task with a deadline!\n"
-                + "3. event <description> /from <date> <time> /to <date> <time> - Add an event with a start and end time!\n"
+                + "3. event <description> /from <date> <time> /to <date> <time> "
+                    + "- Add an event with a start and end time!\n"
                 + "4. list - I'll show you all your tasks!\n"
                 + "5. mark <task number> - Yay! Mark a task as done!\n"
                 + "6. unmark <task number> - Oops! Unmark a task if it's not done yet!\n"

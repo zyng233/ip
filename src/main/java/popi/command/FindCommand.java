@@ -33,8 +33,8 @@ public class FindCommand extends Command {
     public void execute(TaskList tasks, Ui ui, TaskManager taskManager) throws PopiException {
         TaskList matchingTasks = tasks.findTasks(keyword);
         if (matchingTasks.isEmpty()) {
-            throw new TaskNotFoundException("Aww, I couldn't find anything that matches. " +
-                    "Maybe try checking again? Or let me know what else I can search for!");
+            throw new TaskNotFoundException("Aww, I couldn't find anything that matches. "
+                    + "Maybe try checking again? Or let me know what else I can search for!");
         } else {
             ui.showMatchingTasks(matchingTasks);
         }

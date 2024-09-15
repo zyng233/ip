@@ -1,15 +1,11 @@
 package popi.ui;
 
-import java.io.IOException;
 import java.io.InputStream;
 
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Scene;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
-import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import popi.core.Popi;
@@ -26,10 +22,8 @@ public class MainWindow extends Stage {
     private TextField userInput;
     private Popi popi;
     private Ui ui;
-    private final Image USER_IMAGE = loadImage("/images/dinosaur.jpg");
-    private final Image POPI_IMAGE = loadImage("/images/popi.png");
-    private static final String CSS_PATH = "/view/style.css";
-
+    private final Image userImage = loadImage("/images/dinosaur.jpg");
+    private final Image popiImage = loadImage("/images/popi.png");
     /**
      * Constructor for MainWindow.
      */
@@ -45,7 +39,7 @@ public class MainWindow extends Stage {
         ui.showWelcome();
         String greeting = ui.getResponse();
         dialogContainer.getChildren().add(
-                DialogBox.getPopiDialog(greeting, POPI_IMAGE)
+                DialogBox.getPopiDialog(greeting, popiImage)
         );
         scrollPane.vvalueProperty().bind(dialogContainer.heightProperty());
     }
@@ -70,8 +64,8 @@ public class MainWindow extends Stage {
         String input = userInput.getText();
         String response = popi.getResponse(input);
         dialogContainer.getChildren().addAll(
-                DialogBox.getUserDialog(input, USER_IMAGE),
-                DialogBox.getPopiDialog(response, POPI_IMAGE)
+                DialogBox.getUserDialog(input, userImage),
+                DialogBox.getPopiDialog(response, popiImage)
         );
         userInput.clear();
     }
