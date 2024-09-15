@@ -1,6 +1,6 @@
 # Popi User Guide
 
-![Popi](../docs/Ui.png)
+![Popi](Ui.png)
 
 Popi is a task manager that helps you to organize and keep track of your tasks.
 Featuring a futuristic personality, Popi engages users with sophisticated and friendly interactions 
