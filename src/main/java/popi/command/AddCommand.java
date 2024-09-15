@@ -37,7 +37,7 @@ public class AddCommand extends Command {
 
         String[] parts = command.split(" ", 2);
         if (parts.length < 2) {
-            throw new EmptyDescriptionException("The description of a task cannot be empty.");
+            throw new EmptyDescriptionException("Please provide a description for the task. Use 'help' for more info.");
         }
         String taskType = parts[0];
         String description = parts[1];
