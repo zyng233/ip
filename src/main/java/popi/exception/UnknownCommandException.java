@@ -5,6 +5,6 @@ package popi.exception;
  */
 public class UnknownCommandException extends PopiException {
     public UnknownCommandException() {
-        super("OOPS!!! Please provide a valid command!");
+        super("Popi does not understand this command. Please try again.");
     }
 }
