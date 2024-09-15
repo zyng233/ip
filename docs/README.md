@@ -1,12 +1,11 @@
 # Popi User Guide
 
-![Popi](docs/images/Ui.png)
+![Popi](../docs/Ui.png)
 
 Popi is a task manager that helps you to organize and keep track of your tasks.
 Featuring a futuristic personality, Popi engages users with sophisticated and friendly interactions 
 to make task management more enjoyable.
-Popi is designed to be simple and easy to use. 
-:slightly_smiling_face:
+Popi is designed to be simple and easy to use.
 
 ## Getting Started
 
@@ -27,7 +26,8 @@ Popi can helps you:
 - [x] List all tasks
 - [x] Find tasks by keyword
 
-[!Tip] To view the list of available commands, type `help` and press `Enter`.
+> [!TIP]
+>To view the list of available commands, type `help` and press `Enter`.
 
 ## Command Summary
 
