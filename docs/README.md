@@ -26,7 +26,7 @@ Popi can helps you:
 - [x] List all tasks
 - [x] Find tasks by keyword
 
-> [!TIP]
+> **Tip:**
 >To view the list of available commands, type `help` and press `Enter`.
 
 ## Command Summary
