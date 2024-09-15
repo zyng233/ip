@@ -1,6 +1,6 @@
 # Popi User Guide
 
-![Popi](../docs/Ui.png)
+![Popi](Ui.png)
 
 Popi is a task manager that helps you to organize and keep track of your tasks.
 Featuring a futuristic personality, Popi engages users with sophisticated and friendly interactions 
@@ -107,10 +107,12 @@ The following classes and and files in this project have been obtained or modifi
     - `Main.java`
     - `MainWindow.java`
     - `DialogBox.java`
-    - 'Launcher.java'
+    - `Launcher.java`
 
 - FXML Files:
     - `MainWindow.fxml`
     - `DialogBox.fxml`
 
 For more information, visit the [JavaFX tutorial](https://se-education.org/guides/tutorials/javaFx.html).
+
+
