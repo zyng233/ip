@@ -107,7 +107,7 @@ The following classes and and files in this project have been obtained or modifi
     - `Main.java`
     - `MainWindow.java`
     - `DialogBox.java`
-    - 'Launcher.java'
+    - `Launcher.java`
 
 - FXML Files:
     - `MainWindow.fxml`
